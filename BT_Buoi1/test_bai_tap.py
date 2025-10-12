@@ -3,13 +3,14 @@
 # 2️⃣ Kiểm tra tiêu đề trang có đúng mong đợi.
 # 3️⃣ Kiểm tra URL trang web.
 
-import re
+import re, time
 from playwright.sync_api import Page, expect
 
 def test_kiem_tra_tieu_de_linkedin(page: Page):
     print("Open Linkedin page...")
 
     page.goto("https://www.linkedin.com/")
+    time.sleep(10)
 
     expect(page).to_have_title(re.compile("LinkedIn: Log In or Sign Up"))
     print("Correct title!")
