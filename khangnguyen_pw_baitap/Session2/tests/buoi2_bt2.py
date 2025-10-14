@@ -16,8 +16,5 @@ def test_login_success(page: Page):
      expect(page.locator("[data-test='error']")).to_contain_text("Username and password do not match")
 
      print("Invalid credentials, login failed")
-
-     productCount = page.locator(".inventory_item").count()
-     print(f"Inventory: {productCount}")
      
      page.wait_for_timeout(5000)
