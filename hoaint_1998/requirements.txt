@@ -1,0 +1,14 @@
+pytest
+pytest-playwright
+playwright
+pytest-xdist
+pytest-html
+allure-pytest
+requests
+PyYAML
+python-dotenv
+
+#Cài package & browser binaries
+#câu lệnh:
+#pip3 install -r requirements.txt
+#playwright install

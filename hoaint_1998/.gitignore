@@ -1,0 +1,20 @@
+# ----------------------------------------------------------------------
+# 1. Cấu hình Môi trường Ảo (Virtual Environment)
+# ----------------------------------------------------------------------
+# Các thư mục phổ biến của môi trường ảo Python
+venv/
+.venv/
+env/
+.env
+
+# ----------------------------------------------------------------------
+# 2. File Cache của Python và IDE
+# ----------------------------------------------------------------------
+# File cache của Python (tự động sinh ra)
+__pycache__/
+*.pyc
+*.pyd
+
+# Cache của pytest
+.pytest_cache/
+*.egg-info/
