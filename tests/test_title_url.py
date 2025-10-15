@@ -11,7 +11,7 @@ def test_check_page_favorite(page: Page):
     expect_title = "VnExpress - Báo tiếng Việt nhiều người xem nhất"
 
     # Truy cập với thời gian chờ lâu hơn và chỉ đợi DOM sẵn sàng
-    page.goto(url, wait_until="domcontentloaded", timeout=60000)
+    page.goto(url, wait_until="domcontentloaded", timeout=100000)
 
 
     # Kiểm tra tiêu đề
