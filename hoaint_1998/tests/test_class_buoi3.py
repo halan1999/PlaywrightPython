@@ -17,6 +17,12 @@ def input_xpath_by_type (type: str) -> str:
 def button_xpath_by_type (type: str) -> str:
     return f"//button[@type='{type}']"
 
+def xpath_widget_dashboard (value_attribute: str, attribute: str, text: str) -> str:
+    return f"//div[@id='{value_attribute}']//{attribute}[normalize-space(text())='{text}']"
+    
+def xpath_widget_finance_dashboard (index: int, atribute: str, text: str) -> str:
+    return f"//div[@id='widget-finance_overview']/descendant::div[@class='row'][{index}]/descendant::{atribute}[contains(normalize-space(), '{text}')]"
+
 def test_locators_css_id(page: Page):
     #----------------------
     # LOGIN
@@ -31,11 +37,42 @@ def test_locators_css_id(page: Page):
     #----------------------
     #click dashboard menu
     page.locator(get_menu_item_locator("Dashboard")).click()
+    # dashboard items
+    # widgets top
+    invoices_awaiting_payment_widget_top = page.locator(xpath_widget_dashboard("widget-top_stats", "span", "Invoices Awaiting Payment"))
+    converted_leads_widget_top = page.locator(xpath_widget_dashboard("widget-top_stats", "span", "Converted Leads"))
+    projects_in_progress_widget_top = page.locator(xpath_widget_dashboard("widget-top_stats", "span", "Projects In Progress"))
+    tasks_not_finished_widget_top = page.locator(xpath_widget_dashboard("widget-top_stats", "span", "Tasks Not Finished"))
+    # widgets finance
+    invoice_status_draft_widget_finance = page.locator(xpath_widget_finance_dashboard(1, "a", "Draft"))
+    invoice_status_not_sent_widget_finance = page.locator(xpath_widget_finance_dashboard(1, "a", "Not Sent"))
+    invoice_status_unpaid_widget_finance = page.locator(xpath_widget_finance_dashboard(1, "a", "Unpaid"))
+    invoice_status_partially_paid_widget_finance = page.locator(xpath_widget_finance_dashboard(1, "a", "Partially Paid"))
+    invoice_status_overdue_widget_finance = page.locator(xpath_widget_finance_dashboard(1, "a", "Overdue"))
+    invoice_status_paid_widget_finance = page.locator(xpath_widget_finance_dashboard(1, "a", "Paid"))
+    estimate_status_draft_widget_finance = page.locator(xpath_widget_finance_dashboard(2, "a", "Draft"))
+    estimate_status_not_sent_widget_finance = page.locator(xpath_widget_finance_dashboard(2, "a", "Not Sent"))
+    estimate_status_sent_widget_finance = page.locator(xpath_widget_finance_dashboard(2, "a", "Sent"))
+    estimate_status_expired_widget_finance = page.locator(xpath_widget_finance_dashboard(2, "a", "Expired"))
+    estimate_status_declined_widget_finance = page.locator(xpath_widget_finance_dashboard(2, "a", "Declined"))
+    estimate_status_accepted_widget_finance = page.locator(xpath_widget_finance_dashboard(2, "a", "Accepted"))
+    proposal_status_draft_widget_finance = page.locator(xpath_widget_finance_dashboard(3, "a", "Draft"))
+    proposal_status_sent_widget_finance = page.locator(xpath_widget_finance_dashboard(3, "a", "Sent"))
+    proposal_status_open_widget_finance = page.locator(xpath_widget_finance_dashboard(3, "a", "Open"))
+    proposal_status_revised_widget_finance = page.locator(xpath_widget_finance_dashboard(3, "a", "Revised"))
+    proposal_status_declined_widget_finance = page.locator(xpath_widget_finance_dashboard(3, "a", "Declined"))
+    proposal_status_accepted_widget_finance = page.locator(xpath_widget_finance_dashboard(3, "a", "Accepted"))
+    # widget invoice overview
+    outstanding_invoices_widget_finance = page.locator(xpath_widget_dashboard("invoices_total", "dt", "Outstanding Invoices"))
+    paid_due_invoices_widget_finance = page.locator(xpath_widget_dashboard("invoices_total", "dt", "Past Due Invoices"))
+    paid_incoies_widget_finance = page.locator(xpath_widget_dashboard("invoices_total", "dt", "Paid Invoices"))
+    
     # customers menu
     page.locator(get_menu_item_locator("Customers")).click()
     # sale menu
     page.locator(get_menu_item_locator("Sales", 1)).click()
     # submenu sale: proposal menu
+    page.locator(get_sub_menu_item_locator("Proposals")).wait_for(state="visible")
     page.locator(get_sub_menu_item_locator("Proposals")).click()
     # submenu sale: estimate menu
     page.locator(get_sub_menu_item_locator("Estimates")).click()
