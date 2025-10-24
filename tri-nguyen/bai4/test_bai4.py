@@ -1,7 +1,7 @@
 from playwright.sync_api import Page, expect
 import re, time
 
-def test_login(page: Page):
+def test_check_data_table(page: Page):
     #access https://hrm.anhtester.com/erp/login
     page.goto("https://hrm.anhtester.com/erp/login")
     #input username and password
