@@ -7,8 +7,13 @@ allure-pytest
 requests
 PyYAML
 python-dotenv
+faker
 
 #Cài package & browser binaries
 #câu lệnh:
 #pip3 install -r requirements.txt
 #playwright install
+#câu lệnh kích hoạt venv: venv\Scripts\activate
+#câu lệnh run test: pytest -s tests\test_class_buoi4.py
+#debug: set PWDEBUG=1 & pytest -s tests\test_class_buoi4.py
+#huy debug: set PWDEBUG=0
