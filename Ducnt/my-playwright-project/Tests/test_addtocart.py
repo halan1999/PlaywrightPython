@@ -8,6 +8,6 @@ def test_addtocart(page: Page):
     page.click("//input[@id='login-button']")
     page.locator("//div[@data-test='inventory-item-name']").first.click()
     page.locator("//div//button[@id='add-to-cart']").click()
-    expect(page.locator("//div//button[@id='remove']").to_have_text("Remove"))
+    expect(page.locator("//div//button[@id='remove']")).to_have_text("Remove")
     time.sleep(15)
 
