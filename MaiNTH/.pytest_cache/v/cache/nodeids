@@ -1,7 +1,0 @@
-[
-  "test_element.py::test_element[chromium]",
-  "test_element_menu.py::test_element_menu[chromium]",
-  "test_locator.py::test_count_products[chromium]",
-  "test_login_fail.py::test_login_fail[chromium]",
-  "test_title_url.py::test_check_page_favorite[chromium]"
-]

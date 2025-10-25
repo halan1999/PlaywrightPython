@@ -1,4 +1,0 @@
-Viết file mới test_bai_tap.py để:
-1️⃣ Truy cập vào trang web yêu thích (ví dụ: shopee.vn, vnexpress.net, công ty bạn).
-2️⃣ Kiểm tra tiêu đề trang có đúng mong đợi.
-3️⃣ Kiểm tra URL trang web.
