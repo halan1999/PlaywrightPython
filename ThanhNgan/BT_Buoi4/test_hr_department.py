@@ -1,17 +1,4 @@
 from playwright.sync_api import Page, expect
-<<<<<<< HEAD
-import pytest
-
-@pytest.fixture(scope="class")
-def deparment_page(browser):
-    # Tạo một trang mới
-    page = browser.new_page()
-    
-    # Mở trang đăng nhập
-    page.goto("https://hrm.anhtester.com/erp/login")
-
-    # Đăng nhập
-=======
 import time
 
 def test_erp_dashboard(page: Page):
@@ -20,13 +7,11 @@ def test_erp_dashboard(page: Page):
     page.goto("https://hrm.anhtester.com/erp/login")
 
     # Login
->>>>>>> main
     page.locator("#iusername").fill("admin_example")
     page.locator("#ipassword").fill("123456")
     page.locator("//span[contains(text(),'Login')]").click()
     print("Login successfully")
 
-<<<<<<< HEAD
     # Điều hướng đến Core HR > Department
     page.locator("//a[normalize-space()='Core HR']").click()
     page.locator("//a[normalize-space()='Department']").click()
@@ -74,7 +59,6 @@ class TestDepartment:
         print("Delete department successfully")
 
 
-=======
     # NOTE: Core HR
     print("\nNavigate to the Core HR>Department")
     # page.locator("//div[@class='hamburger-box']").click()
@@ -95,4 +79,3 @@ class TestDepartment:
         print("Đã tìm thấy kết quả tìm kiếm")
     else:
         print("Không tìm thấy kết quả tìm kiếm")
->>>>>>> main
