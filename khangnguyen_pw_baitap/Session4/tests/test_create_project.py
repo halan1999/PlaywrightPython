@@ -39,7 +39,7 @@ def test_hrm_project(page: Page):
         page.locator('//input[@name="title" and @type="text"]').fill(projectTitle)
         # Input client
         (page.locator('#client_id')).select_option('WOF Wind 2303')
-        
+
         # Input start date
         page.locator('//input[@name="start_date"]').click()
         page.locator("div.dtp:visible .dtp-select-day", has_text="27").click()
@@ -65,11 +65,6 @@ def test_hrm_project(page: Page):
         # Check project title displayed at the first cell of Projects column
         project_title_cell = page.locator('//table//tbody/tr[@role="row"][1]/td[1]')
         client_cell = page.locator('//table//tbody/tr[@role="row"][1]/td[2]')
+
         expect(project_title_cell).to_contain_text(projectTitle)
         expect(client_cell).to_contain_text(client)
-
-
-
-
-
-        
