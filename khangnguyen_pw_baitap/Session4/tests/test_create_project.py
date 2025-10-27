@@ -11,7 +11,7 @@ def test_hrm_project(page: Page):
         password = "123456"
 
          # Project information
-        projectTitle = "Test project 123"
+        projectTitle = "Test project 456"
         client = "WOF Wind 2303"
         projectSummary = "This is the project summary"
 
@@ -52,6 +52,8 @@ def test_hrm_project(page: Page):
 
         # Input summary
         page.locator('//textarea[@id="summary"]').fill(projectSummary)
+
+        time.sleep(5)
 
         # Click Save
         page.locator('//div[@class="card-footer text-right"]//button[@type="submit"]').click()
