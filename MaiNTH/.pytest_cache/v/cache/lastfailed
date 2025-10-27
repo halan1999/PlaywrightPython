@@ -1,0 +1,5 @@
+{
+  "test_element.py::test_element[chromium]": true,
+  "test_element_menu.py::test_element_menu[chromium]": true,
+  "test_dashboard_fixture.py::test_department_flow[chromium]": true
+}
