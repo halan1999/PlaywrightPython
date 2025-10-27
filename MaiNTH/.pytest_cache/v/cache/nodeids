@@ -1,4 +1,6 @@
 [
+  "test_dashboard_fixture.py::test_department_flow",
+  "test_dashboard_fixture.py::test_department_flow[chromium]",
   "test_element.py::test_element[chromium]",
   "test_element_menu.py::test_element_menu[chromium]",
   "test_locator.py::test_count_products[chromium]",
