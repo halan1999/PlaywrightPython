@@ -1,7 +1,8 @@
 from playwright.sync_api import Page, expect
+from utils.project_information_storage import load_project_title
 import re, time
 
-def test_delete_project(page: Page):
+def test_edit_project(page: Page):
         # Test URL
         TEST_URL = "https://hrm.anhtester.com/erp/login"
 
@@ -10,9 +11,7 @@ def test_delete_project(page: Page):
         password = "123456"
 
          # Project information
-        projectTitle = "Test project 321"
-        client = "WOF Wind 2303"
-        projectSummary = "This is the project summary"
+        projectTitle = load_project_title()
 
         # Open URL
         page.goto(TEST_URL)
@@ -45,7 +44,7 @@ def test_delete_project(page: Page):
         time.sleep(3)
 
         # Change title
-        page.locator('//input[@name="title" or @placeholder="title"]').fill('Test project 111')
+        page.locator('//input[@name="title" or @placeholder="title"]').fill('Test project - Khang - updated')
         time.sleep(3)
 
         # Click Upload Project button
@@ -57,7 +56,7 @@ def test_delete_project(page: Page):
         time.sleep(3)
 
         # Search the project which title was changed...
-        search_field = page.locator('//div[@id="xin_table_wrapper"]//input[@type="search"]').fill(projectTitle)
+        page.locator('//div[@id="xin_table_wrapper"]//input[@type="search"]').fill(projectTitle)
         time.sleep(5)
 
         # Check the result row contains the valid message

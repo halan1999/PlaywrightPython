@@ -1,5 +1,10 @@
 from playwright.sync_api import Page, expect
-import re, time
+from utils.project_information_storage import load_project_title
+import re, time, random, string
+
+def generate_random_id(length=6):
+    characters = string.ascii_uppercase + string.digits  # A-Z + 0-9
+    return ''.join(random.choice(characters) for _ in range(length))
 
 def test_delete_project(page: Page):
         # Test URL
@@ -10,9 +15,7 @@ def test_delete_project(page: Page):
         password = "123456"
 
          # Project information
-        projectTitle = "Test project 123"
-        client = "WOF Wind 2303"
-        projectSummary = "This is the project summary"
+        projectTitle = load_project_title()
 
         # Open URL
         page.goto(TEST_URL)

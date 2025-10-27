@@ -1,8 +1,17 @@
 from playwright.sync_api import Page, expect
-import re, time
-import random
+from utils.project_information_storage import save_project_title
+import re, time, random, string
 
-def test_hrm_project(page: Page):
+random_id = None
+
+def generate_random_id(length=6):
+    characters = string.ascii_uppercase + string.digits  # A-Z + 0-9
+    return ''.join(random.choice(characters) for _ in range(length))
+
+def test_create_project(page: Page):
+        global random_id
+        random_id = generate_random_id()
+
         # Test URL
         TEST_URL = "https://hrm.anhtester.com/erp/login"
 
@@ -11,9 +20,11 @@ def test_hrm_project(page: Page):
         password = "123456"
 
          # Project information
-        projectTitle = "Test project 123"
+        projectTitle = f"Test project - Khang - {random_id}"
         client = "WOF Wind 2303"
         projectSummary = "This is the project summary"
+
+        save_project_title(projectTitle)
 
         # Open URL
         page.goto(TEST_URL)
