@@ -11,7 +11,7 @@ def test_hrm_project(page: Page):
         password = "123456"
 
          # Project information
-        projectTitle = "Test project 456"
+        projectTitle = "Test project 123"
         client = "WOF Wind 2303"
         projectSummary = "This is the project summary"
 
@@ -29,7 +29,7 @@ def test_hrm_project(page: Page):
         time.sleep(5)
 
         # Click Projects menu item
-        page.locator('//a[normalize-space(.)="Projects"]').click()
+        page.locator('//div[@class="navbar-wrapper"]//li//a[contains(@href,"projects-list")]').click()
         time.sleep(5)
 
         # Click Add new button

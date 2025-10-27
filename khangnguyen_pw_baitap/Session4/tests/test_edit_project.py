@@ -10,7 +10,7 @@ def test_delete_project(page: Page):
         password = "123456"
 
          # Project information
-        projectTitle = "Test project 123"
+        projectTitle = "Test project 321"
         client = "WOF Wind 2303"
         projectSummary = "This is the project summary"
 
@@ -27,7 +27,7 @@ def test_delete_project(page: Page):
         expect(username_label).to_contain_text('@admin_example')
 
         # Click Projects menu item
-        page.locator('//a[normalize-space(.)="Projects"]').click()
+        page.locator('//div[@class="navbar-wrapper"]//li//a[contains(@href,"projects-list")]').click()
 
         # Search newly created project
         page.locator('//div[@id="xin_table_wrapper"]//input[@type="search"]').fill(projectTitle)
@@ -36,20 +36,29 @@ def test_delete_project(page: Page):
         page.locator('//table[@id="xin_table"]//tbody//tr[1]').hover()
         time.sleep(3)
 
-        # Click Delete button
-        page.locator('//button[@data-target=".delete-modal"]').click()
+        # Click View Details button
+        page.locator('//a[contains(@href,"project-detail")]//button[@type="button"]').click()
         time.sleep(3)
 
-        # Modal opens...
-        expect(page.locator('//div[@class="modal-content"]//h5[contains(normalize-space(),"delete")]')).to_contain_text('Are you sure you want to delete this record?')
-        expect(page.locator('//div[@class="alert alert-danger"]/strong')).to_contain_text("You won't be able to revert this!")
-
-        # Click Confirm button
-        page.locator('//div[@class="modal-content"]//button[normalize-space()="Confirm"]').click()
-
-        # Search the project which was deleted...
-        page.locator('//div[@id="xin_table_wrapper"]//input[@type="search"]').fill(projectTitle)
+        # Switch to Edit tab
+        page.locator('//div[@class="card-body"]//li//a[@id="pills-edit-tab"]').click()
         time.sleep(3)
+
+        # Change title
+        page.locator('//input[@name="title" or @placeholder="title"]').fill('Test project 111')
+        time.sleep(3)
+
+        # Click Upload Project button
+        page.locator('//button[@type="submit"]//span[normalize-space()="Update Project"]').click()
+        time.sleep(3)
+
+        # Go back Projects page
+        page.locator('//div[@class="navbar-wrapper"]//li//a[contains(@href,"projects-list")]').click()
+        time.sleep(3)
+
+        # Search the project which title was changed...
+        search_field = page.locator('//div[@id="xin_table_wrapper"]//input[@type="search"]').fill(projectTitle)
+        time.sleep(5)
 
         # Check the result row contains the valid message
         result_row = page.locator('//table[@id="xin_table"]/tbody/tr[1]')
