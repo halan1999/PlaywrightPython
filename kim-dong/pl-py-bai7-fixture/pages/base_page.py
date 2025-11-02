@@ -19,20 +19,17 @@ class BasePage:
         """Thực hiện click với xử lý lỗi và ghi log."""
         try:
             print(f"[Click] {name or locator}")
-            element = self._get_locator(locator)
-            expect(element).to_be_visible()
-            element.click()
-        except Exception as e:
-            print(f"[ERROR] Unable to click to {locator}: {type(e).__name__} - {e}")
+            self._get_locator(locator).click()
+        except TimeoutError:
+            print(f"[Lỗi] Không thể click vào {locator}")
             raise
-
 
     def _fill(self, locator: str, text: str, name: str = ""):
         """Điền dữ liệu vào ô input."""
-        print(f"[Fill] '{text}' into {name or locator}")
+        print(f"[Fill] '{text}' vào {name or locator}")
         self._get_locator(locator).fill(text)
 
     def _assert_text_visible(self, locator: str, text: str):
         """Kiểm tra văn bản mong đợi hiển thị trên giao diện."""
-        print(f"[Assert] Check '{text}' exists")
+        print(f"[Assert] Kiểm tra '{text}' hiển thị")
         expect(self._get_locator(locator)).to_contain_text(text)

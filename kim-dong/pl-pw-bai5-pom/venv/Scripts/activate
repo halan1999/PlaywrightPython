@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\pl-pw-bai5-pom\venv"
+VIRTUAL_ENV="D:\aTester\PlaywrightPython\kim-dong\pl-pw-bai5-pom\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

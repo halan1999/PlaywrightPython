@@ -1,31 +1,65 @@
+import random
+from playwright.sync_api import Page, expect
 from pages.base_page import BasePage
 
 class InventoryPage(BasePage):
-    """Đại diện cho trang danh sách sản phẩm (Inventory Page)."""
-
-    ITEM_BACKPACK_ADD_BUTTON = "[data-test='add-to-cart-sauce-labs-backpack']"
+    PRODUCT_NAME_LOCATOR = ".inventory_item_name"
+    ADD_TO_CART_BUTTONS = ".inventory_item button"
+    CART_ICON = ".shopping_cart_link"
+    CART_ITEM_NAMES = ".cart_item .inventory_item_name"
     SHOPPING_CART_BADGE = ".shopping_cart_badge"
-    SHOPPING_CART_ICON = ".shopping_cart_link"
-    ITEM_IN_CART =".inventory_item_name"
 
-    def add_backpack_to_cart(self):
-        """Thêm sản phẩm 'Sauce Labs Backpack' vào giỏ hàng."""
-        self._click(self.ITEM_BACKPACK_ADD_BUTTON, "Add Backpack")
+    PRODUCT_LIST = ".inventory_list"
+
+    MENU_BUTTON = "#react-burger-menu-btn"
+    LOGOUT_LINK ="#logout_sidebar_link"
+    LOGIN_BUTTON = "#login-button"
+    ERROR_MESSAGE = "[data-test='error']"
+
+    def __init__(self, page: Page):
+        self.page = page
+
+    def assert_login_successful(self):
+        """Xác minh đăng nhập thành công."""
+        expect(self.page).to_have_url("https://www.saucedemo.com/inventory.html")
+
+    def logout(self):
+        self._click(self.MENU_BUTTON)
+        self._click(self.LOGOUT_LINK)
+
+        from pages.login_page import LoginPage
+        return LoginPage(self.page)
+
+    def get_all_product_names(self):
+        return self.page.locator(self.PRODUCT_NAME_LOCATOR).all_inner_texts()
+
+    def add_random_product_to_cart(self):
+        product_names = self.get_all_product_names()
+        selected_product = random.choice(product_names)
+        print(f"[INFO] Selected product: {selected_product}")
+
+        # Find the index of the selected product
+        all_names = self.page.locator(self.PRODUCT_NAME_LOCATOR)
+        count = all_names.count()
+        for i in range(count):
+            name = all_names.nth(i).inner_text()
+            if name == selected_product:
+                self.page.locator(self.ADD_TO_CART_BUTTONS).nth(i).click()
+                break
+        return selected_product
+
+    def go_to_cart(self):
+        self.page.locator(self.CART_ICON).click()
+
+    def assert_product_in_cart(self, expected_name):
+        cart_items = self.page.locator(self.CART_ITEM_NAMES).all_inner_texts()
+        print(f"[DEBUG] Cart contains: {cart_items}")
+        assert expected_name in cart_items, f"Expected '{expected_name}' in cart, but got {cart_items}"
 
     def assert_cart_badge_count(self, expected_count: str):
         """Kiểm tra số lượng sản phẩm trong giỏ hàng."""
         badge_text = self._get_locator(self.SHOPPING_CART_BADGE).inner_text()
-        print(f"[DEBUG] Expected: {expected_count}, Actual: {badge_text}")
         assert badge_text == expected_count, f"Expected {expected_count}, got {badge_text}"
 
-
-    def add_product_to_cart(self):
-        self._click(self.ITEM_BACKPACK_ADD_BUTTON, "Add Backpack")        
-
-    def assert_product_in_cart(self,expected_product_name:str):
-        self._click(self.SHOPPING_CART_ICON,"Open Cart")
-        actual_product_name = self._get_locator(self.ITEM_IN_CART).inner_text()
-        print(f"[DEBUG] Expected: {expected_product_name}, Actual: {actual_product_name}")
-        assert actual_product_name == expected_product_name, f"Expected {expected_product_name}, got {actual_product_name}"
-        
-
+    def assert_on_inventory_page(self):
+        expect(self.page.locator(self.PRODUCT_LIST)).to_be_visible()
