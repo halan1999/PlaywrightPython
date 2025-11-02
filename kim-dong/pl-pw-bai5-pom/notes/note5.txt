@@ -1,0 +1,19 @@
+Day la bai POM - du an Sauce Demo
+
+
+0:27
+
+
+
+
+python -m venv venv
+
+venv\Scripts\activate
+
+pip install -r requirements.txt
+
+pytest -s -v
+pip install pytest pytest-playwright pytest-html
+pytest tests/test_login.py --html=reports/report.html --self-contained-html
+
+pytest tests/test_inventory.py --html=reports/report.html --self-contained-html

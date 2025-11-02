@@ -1,0 +1,20 @@
+Activate Virtual Environment
+.\venv\Scripts\activate
+
+Delete Virtual Environment
+rmdir /s /q venv
+
+Create Virtual Environment
+python -m venv venv
+
+
+
+
+7-fixtures
+
+setup
+teardown
+
+1:15
+
+pytest --headed --browser chromium  
