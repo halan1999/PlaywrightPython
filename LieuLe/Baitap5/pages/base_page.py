@@ -11,7 +11,7 @@ class BasePage:
     def _get_locator(self, locator:str) -> Locator:
         return self.page.locator(locator)
     
-    def _click(self, locator: str, name:str="" )
+    def _click(self, locator: str, name:str="" ):
         try:
             print(f"[Click] {name or locator}")
             self._get_locator(locator).click()
