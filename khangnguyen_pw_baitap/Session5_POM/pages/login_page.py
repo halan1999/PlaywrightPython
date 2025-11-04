@@ -7,12 +7,11 @@ class LoginPage:
     def __init__(self, page: Page):
         self.page = page
 
+        # Locators
         self._username = page.locator("#iusername")
         self._password = page.locator("#ipassword")
         self._login_btn = page.locator('button[type="submit"]')
-
         self._toast_invalid = page.locator("#toast-container >> :text-matches('invalid', 'i')")
-
         self._my_profile = page.locator('//a[contains(@href,"my-profile")]//p')
 
     # Method: open URL

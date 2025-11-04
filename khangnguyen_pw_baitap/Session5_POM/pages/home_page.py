@@ -5,6 +5,7 @@ class HomePage:
         self.page = page
         self._profile_link = "//a[contains(@href,'my-profile')]//p"
 
+    # Method: check if username is displayed
     def is_loaded(self):
         expect(self.page.locator(self._profile_link)).to_be_visible(timeout=10000)
         return True
