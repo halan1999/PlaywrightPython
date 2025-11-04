@@ -7,6 +7,17 @@ class BasePage:
 
     def __init__(self, page : Page):
         self.page = page
+
+    def _goToURL(self, url : str):
+        self.page.goto(url, wait_until = 'domcontentloaded')
+
+    def _click(self, xpath : str):
+        locator = self.page.locator(xpath)
+        locator.click()
+
+    def _setText(self, xpath : str, input_data : str):
+        locator = self.page.locator(xpath)
+        locator.fill(input_data)    
     
     def _click_expand_menu(self, label_menu : str):
         self.page.locator(self.Xpath_btn_expand_menu).click()
@@ -14,7 +25,7 @@ class BasePage:
         xpath_sub_menu = f'//a[normalize-space()="{label_menu}"]'
         self.page.locator(xpath_sub_menu).click()
 
-    def _click_cart_button(self):
+    def _click_cart(self):
         self.page.locator(self.Xpath_cart).click()
     
     def _verify_home_page_visible(self):
