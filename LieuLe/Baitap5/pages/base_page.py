@@ -11,16 +11,16 @@ class BasePage:
     def _get_locator(self, locator:str) -> Locator:
         return self.page.locator(locator)
     
-    def _click(self, locator: str, name:str="" ):
+    def _click(self, locator: str):
         try:
-            print(f"[Click] {name or locator}")
+            print(f"[Click] {locator}")
             self._get_locator(locator).click()
         except TimeoutError:
             print(f"[Error] Can not click on {locator}")
             raise
 
-    def _fill(self, locator: str, text: str, name: str =""):
-        print(f"[Fill] '{text} into {name or locator}")
+    def _fill(self, locator: str, text: str):
+        print(f"[Fill] '{text} into {locator}")
         self._get_locator(locator).fill(text)
 
     
