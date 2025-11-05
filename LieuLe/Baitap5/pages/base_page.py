@@ -1,7 +1,7 @@
 from playwright.sync_api import Page, expect, Locator, TimeoutError
 
 class BasePage:
-    def __init__(self, page:Page):
+    def __init__(self, page):
         self.page = page
 
     def _visit(self, url: str):
@@ -12,15 +12,9 @@ class BasePage:
         return self.page.locator(locator)
     
     def _click(self, locator: str):
-        try:
-            print(f"[Click] {locator}")
-            self._get_locator(locator).click()
-        except TimeoutError:
-            print(f"[Error] Can not click on {locator}")
-            raise
-
+        self._get_locator(locator).click()
+        
     def _fill(self, locator: str, text: str):
-        print(f"[Fill] '{text} into {locator}")
         self._get_locator(locator).fill(text)
 
     

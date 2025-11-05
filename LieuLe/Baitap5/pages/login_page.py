@@ -1,5 +1,5 @@
-from pages.base_page import BasePage
-from playwright.async_api import expect
+from ..pages.base_page import BasePage
+from playwright.sync_api import sync_playwright, Playwright, expect
 
 class LoginPage(BasePage):
     URL = "https://www.saucedemo.com/"
@@ -8,8 +8,9 @@ class LoginPage(BasePage):
     Loginbtn = "#login-button"
 
     def __init__(self, page):
-        super().__init__(page)
-
+        super().__init__(page)  
+        self.page = page
+        
     def goto(self):
         self._visit(self.URL)
 
