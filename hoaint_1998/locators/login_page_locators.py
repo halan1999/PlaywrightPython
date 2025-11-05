@@ -7,3 +7,4 @@ class LoginPageLocators(CommonLocators):
     FORGOT_PASSWORD_LINK_LOCATOR = CommonLocators._contains_text_xpath("span", "Forgot password?")
 
     TOAST_ERROR_INVALID_CREDENTIALS = CommonLocators._contains_text_xpath("div", "Invalid Login Credentials")
+    

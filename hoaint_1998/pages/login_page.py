@@ -15,6 +15,7 @@ class LoginPage(BasePage):
 
     def go_to_login_page(self, base_url):
         self._goto(f"{base_url}/login")
+        self._take_screenshot("go_to_login_page")
 
     def login(self, username: str, password: str):
         self._fill(self.username_input_locator, username)
@@ -23,9 +24,11 @@ class LoginPage(BasePage):
 
     def verify_login_success(self):
         self._expect_to_have_url("/desk")
+        self._take_screenshot("should be login")
 
     def verify_login_failure_invalid_credentials(self):
         self._expect_to_be_visible(self.toast_error_invalid_credentials)
+        self._take_screenshot("Non login")
 
     def go_to_forgot_password_page(self):
         self._click(self.forgot_password_link_locator)

@@ -1,6 +1,7 @@
 from playwright.sync_api import Page, expect
 from typing import Self
 import re
+from pathlib import Path
 
 class BasePage():
     def __init__(self, page: Page):
@@ -71,3 +72,11 @@ class BasePage():
     def _wait_for_element(self, locator: str, timeout: int = 30000) -> Self:
         self.page.locator(locator).wait_for(state="visible", timeout=timeout)
         return self
+    
+    #--------------------------
+    #------ TAKE A SCREENSHOT -------
+    #--------------------------
+    def _take_screenshot(self, filename: str):
+        file_path = Path(f"screenshots/{filename}.png")
+        self.page.screenshot(path=file_path)
+        print(f"[SCREENSHOT] Lưu tại: {file_path}")

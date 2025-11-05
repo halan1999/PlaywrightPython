@@ -18,3 +18,7 @@ __pycache__/
 # Cache của pytest
 .pytest_cache/
 *.egg-info/
+
+# Folder report
+reports/
+screenshots/
