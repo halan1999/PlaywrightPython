@@ -23,6 +23,7 @@ class BasePage:
         print(f"[Fill] '{text} into {locator}")
         self._get_locator(locator).fill(text)
     
+    def load_
     def _take_screenshot(self, filename: str):
         path = f"screenshots/{filename}"
         self.page.screenshot(path=path)
