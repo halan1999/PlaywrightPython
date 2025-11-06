@@ -6,6 +6,7 @@ class LoginPage(BasePage):
     Username = "#user-name"
     Password = "#password"
     Loginbtn = "#login-button"
+    Errorrmess = "//h3[@data-test = 'error']"
 
     def __init__(self, page):
         super().__init__(page)  
@@ -20,3 +21,5 @@ class LoginPage(BasePage):
         self._fill(self.Password, password)
         self._click(self.Loginbtn)
 
+    def get_error_message(self):
+        return self.page.locator(self.Errorrmess)
