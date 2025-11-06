@@ -22,7 +22,18 @@ class HeaderComponent(BasePage):
         self._user_profile.click()
         self._logout_dropdown_item.click()
         
+    def _click_account_settings_icon(self):
+        self._account_settings_icon.click()
 
+    def _click__apps_icon(self):
+        self._apps_icon.click()
+
+    def _click__system_calendar_icon(self):
+        self._system_calendar_icon.click()
+
+    def _click__system_reports(self):
+        self._system_reports.click()
+        
 
 
     

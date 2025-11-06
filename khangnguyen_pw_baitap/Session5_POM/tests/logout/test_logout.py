@@ -22,8 +22,8 @@ def test_logout_functionality(page):
 
     # Expected: Home page is loaded
     assert home_page.is_loaded()
-    # Take a screenshot of home page
     home_page.take_screenshot("home_page.png")
+
 
     # Log out
     header_component._logout()
