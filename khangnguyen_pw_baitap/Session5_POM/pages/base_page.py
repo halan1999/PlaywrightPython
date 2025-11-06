@@ -13,4 +13,8 @@ class BasePage:
     def goto(self, url: str):
         self.page.goto(url)
 
+    def take_screenshot(self, filename: str):
+        path = f"screenshots/{filename}"
+        self.page.screenshot(path=path)
+        print(f"[SCREENSHOT] Saved as: {path}")
 

@@ -1,0 +1,5 @@
+{
+  "tests/projects/test_create_project.py::test_create_project[chromium]": true,
+  "tests/projects/test_create_project.py": true,
+  "tests/log_out/test_logout.py::test_logout_functionality[chromium]": true
+}

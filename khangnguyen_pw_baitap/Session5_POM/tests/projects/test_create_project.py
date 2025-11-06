@@ -1,10 +1,10 @@
 from playwright.sync_api import Page, expect
 from pages.login_page import LoginPage
 from pages.projects_page import ProjectsPage
-from test_data.randoms import random_id
-from test_data.project_information_storage import save_project_title
-from test_data.project_data_loader import load_project_data
-from test_data.credentials_loader import get_valid
+from resources.randoms import random_id
+from resources.project_information_storage import save_project_title
+from resources.project_data_loader import load_project_data
+from resources.credentials_loader import get_valid
 import re
 
 def test_create_project(page: Page):
