@@ -34,3 +34,7 @@ class LoginPage(BasePage):
 
     def assert_goto_forgot_password(self):
         expect(self.page).to_have_url("https://hrm.anhtester.com/erp/forgot-password")
+
+    def assert_invalid_password(self):
+        invalid_password = self.get_locator(self.LOGIN_FAILED_TEXT)
+        expect(invalid_password).to_contain_text("Your password is too short, minimum 6 characters required.")
