@@ -1,16 +1,19 @@
 from pages.login_page import LoginPage
 from components.header_components import HeaderComponents
 from components.menu_bar_components import MenuBarComponents
-from playwright.sync_api import Page
 import pytest
 import json
+from utils.csv_loader import load_csv_data
+import os
 
 base_url = "https://hrm.anhtester.com/erp"
 username = "admin_example"
 password = "123456"
 
-with open("data/credentials.json") as f:
+with open("data/login_data/credentials.json") as f:
         creds = json.load(f)
+
+file_csv_login = os.path.join(os.getcwd(), "data", "login_data", "login.csv")
 
 @pytest.mark.skip(reason="None")
 def test_case_1(page):
@@ -54,6 +57,7 @@ def test_case_4(page):
     login_page.login(valid["username"], valid["password"])
     login_page.verify_login_success()
 
+@pytest.mark.skip(reason="None")
 def test_case_5(page):
     """
     1. login
@@ -69,5 +73,26 @@ def test_case_5(page):
     header_components._click_and_take_screenshot_all_button_in_header()
     menu_bar_components._click_and_take_screenshot_all_button_in_menu()
     header_components._logout()
+
+@pytest.mark.parametrize("user", load_csv_data(file_csv_login))
+def test_case_6(page, user):
+    login_page = LoginPage(page)
+    username = user['username']
+    password = user['password']
+    expect = user['expect']
+    type_error = user['type_error']
+    login_page.go_to_login_page(base_url)
+    login_page.login(username, password)
+    if expect == "pass":
+        login_page.verify_login_success()
+    else:
+        if type_error == "password_too_short":
+            login_page.verify_login_failure_password_too_short()
+        elif type_error == "invalid_credentials":
+            login_page.verify_login_failure_invalid_credentials()
+        else:
+            login_page.verify_login_failure_required()
+        
+
 
 
