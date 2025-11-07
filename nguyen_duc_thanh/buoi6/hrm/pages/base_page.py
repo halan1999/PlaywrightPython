@@ -1,3 +1,5 @@
+import json
+import os
 from playwright.sync_api import Page
 
 class BasePage:
@@ -21,7 +23,12 @@ class BasePage:
             raise
     
     def take_screenshot(self, filename: str):
-        path = f"buoi6/hrm/screenshots/{filename}"
+        path = f"buoi6/hrm/screenshots/{filename}.png"
         self.page.screenshot(path=path)
         print(f"[SCREENSHOT] Lưu tại: {path}")
 
+    def get_credential(self):
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(current_dir, "../data/credentials.json")
+        with open(file_path) as f:
+            return json.load(f)
