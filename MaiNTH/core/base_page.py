@@ -34,4 +34,10 @@ class BasePage:
         print(f"[Assert] Kiểm tra '{text}' hiển thị")
         expect(self._get_locator(locator)).to_contain_text(text)
 
+    def _take_screenshot(self, filename: str):
+        """Lưu ảnh chụp màn hình (sử dụng khi test fail)."""
+        path = f"screenshots/{filename}.png"
+        self.page.screenshot(path=path)
+        print(f"[SCREENSHOT] Lưu tại: {path}")
+
     
