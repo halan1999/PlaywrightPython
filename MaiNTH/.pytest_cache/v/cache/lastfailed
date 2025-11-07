@@ -1,0 +1,8 @@
+{
+  "tests/function_other/test_dashboard_element.py::test_dashboard_element[chromium]": true,
+  "tests/function_other/test_element_menu.py::test_element_menu[chromium]": true,
+  "tests/function_other/test_fixtute_1.py::test_add_to_cart_flow": true,
+  "tests/function_other/test_fixtute_1.py::test_view_product_details_flow": true,
+  "tests/function_Hrm_bt6/test_login.py::test_Header": true,
+  "tests/function_Hrm_bt6/test_login.py::test_Header_language[chromium]": true
+}
