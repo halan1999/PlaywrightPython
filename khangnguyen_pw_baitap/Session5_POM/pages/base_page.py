@@ -1,4 +1,5 @@
 from playwright.sync_api import Page
+import os
 
 class BasePage:
     def __init__(self, page: Page):
@@ -14,7 +15,5 @@ class BasePage:
         self.page.goto(url)
 
     def take_screenshot(self, filename: str):
-        path = f"screenshots/{filename}"
-        self.page.screenshot(path=path)
-        print(f"[SCREENSHOT] Saved as: {path}")
-
+        os.makedirs("screenshots", exist_ok=True)
+        self.page.screenshot(path=filename)
