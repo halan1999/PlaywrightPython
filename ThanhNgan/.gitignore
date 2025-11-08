@@ -14,3 +14,5 @@
 *.CACHEDIR.TAG
 
 *.README.md
+
+*.__init__.py
