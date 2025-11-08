@@ -1,4 +1,5 @@
 from cores.base_page import BasePage
+from components.header_component import header_component
 import json
 from playwright.sync_api import expect
 
@@ -27,6 +28,17 @@ class LoginPage(BasePage):
         
         expect(self.page).to_have_url("https://hrm.anhtester.com/erp/desk")
         self._take_screenshot("Loggin_successful.png")
+
+    def logout(self):
+       header = header_component(self.page)
+       header._click(header.ACCOUNT, "Account Menu")
+       header.page.wait_for_load_state("networkidle")
+       header._click(header.Logout, "Logout Button")
+       header.page.wait_for_load_state("networkidle")
+    
+    def assert_logout_successful(self):
+        expect(self.page).to_have_url("https://hrm.anhtester.com/erp/login")
+        self._take_screenshot("Logout_successful.png")
 
 
     # def assert_error_message_visible(self, expected_text):

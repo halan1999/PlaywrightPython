@@ -22,58 +22,35 @@ class header_component(BasePage):
     My_Account = "//span[normalize-space(.)='My Account']"
     Logout = "//a[@href='https://hrm.anhtester.com/erp/system-logout']"
 
-    def click_logo(self):
-        self._click(self.LOGO, "Logo")
-    
-    def click_account_setting(self):
-        self._click(self.Acount_setting, "Account setting")
-    
-    def click_apps(self):
-        self._click(self.Apps, "Apps")
-        self.page.wait_for_load_state("networkidle")
-    
-    def click_apps_events(self):
-        self._click(self.Apps_Events, "Apps Events")
+    Click_element_header = {
+        "Logo": LOGO,
+        "Acount_setting": Acount_setting,
+        "Apps": Apps,
+        "Apps_Events": Apps_Events,
+        "Apps_Hollidays": Apps_Hollidays,
+        "Apps_Visitor_Book": Apps_Visitor_Book,
+        "Apps_Conference_Booking": Apps_Conference_Booking,
+        "Apps_Documents_Manager": Apps_Documents_Manager,
+        "Apps_Assests": Apps_Assests,
+        "Apps_Awards": Apps_Awards,
+        "Apps_Transfer": Apps_Transfer,
+        "Apps_Complaints": Apps_Complaints,
+        "Apps_Resignation": Apps_Resignation,
+        "Apps_Customs_Fields": Apps_Customs_Fields,
+        "System_Calendar": System_Calendar,
+        "System_Report": System_Report,
+        "To_Do_list": To_Do_list,
+        "ACCOUNT": ACCOUNT,
+        "My_Account": My_Account
+    }
 
-    def click_apps_hollidays(self):
-        self._click(self.Apps_Hollidays, "Apps Hollidays")
-    
-    def click_apps_visitor_book(self):
-        self._click(self.Apps_Visitor_Book, "Apps Visitor Book")
+    def click_and_screenshot_header(self):
+        for name, locator in self.Click_element_header.items():
+            try:
+                self._click(locator, name)
+                self._take_screenshot(f"Header_{name}.png")
+                self.page.wait_for_load_state("networkidle")
+            except Exception as e:
+                print(f"[Lỗi] Không thể click vào {name}: {e}")
 
-    def click_apps_conference_booking(self):
-        self._click(self.Apps_Conference_Booking, "Apps Conference Booking")
 
-    def click_apps_documents_manager(self):
-        self._click(self.Apps_Documents_Manager, "Apps Documents Manager")
-
-    def click_apps_assests(self):
-        self._click(self.Apps_Assests, "Apps Assests")
-
-    def click_apps_awards(self):
-        self._click(self.Apps_Awards, "Apps Awards")
-
-    def click_apps_transfer(self):
-        self._click(self.Apps_Transfer, "Apps Transfer")
-
-    def click_apps_complaints(self):
-        self._click(self.Apps_Complaints, "Apps Complaints")
-
-    def click_apps_resignation(self):
-        self._click(self.Apps_Resignation, "Apps Resignation")
-
-    def click_apps_customs_fields(self):
-        self._click(self.Apps_Customs_Fields, "Apps Customs Fields")
-
-    def click_system_calendar(self):
-        self._click(self.System_Calendar, "System Calendar")
-
-    def click_system_report(self):
-        self._click(self.System_Report, "System Report")
-
-    def click_to_do_list(self):
-        self._click(self.To_Do_list, "To Do list")
-
-    def click_account(self):
-        self._click(self.ACCOUNT, "Account")
-        self.page.wait_for_load_state("networkidle")   

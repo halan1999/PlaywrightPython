@@ -10,9 +10,11 @@ def test_login_with_valid_credentials(page: Page):
         creds = json.load(f)
 
     valid = creds["valid_user"]
-    
     login_page.login(valid["username"], valid["password"])
     login_page.assert_login_successful()
+    login_page.logout()
+    login_page.assert_logout_successful()
+    
 
 
 
