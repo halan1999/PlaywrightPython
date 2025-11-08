@@ -1,0 +1,16 @@
+# Bỏ qua tất cả các file .log
+*.log
+
+# Bỏ qua file môi trường
+.env
+
+# Bỏ qua tất cả các file tạm thời
+*.tmp
+
+*.pytest_cache/
+
+*.__pycache__/
+
+*.CACHEDIR.TAG
+
+*.README.md
