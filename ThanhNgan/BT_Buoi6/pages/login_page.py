@@ -4,12 +4,13 @@ from playwright.sync_api import Page, expect
 import time, json
 class LoginPage(BasePage):
 
+    URL = "https://hrm.anhtester.com/erp/login"
+    txt_username = "#iusername"
+    txt_password = "#ipassword"
+    btn_login = "//button[@type='submit']"
+    
     def __init__(self, page):
         super().__init__(page)
-        self.URL = "https://hrm.anhtester.com/erp/login"
-        self.txt_username = "#iusername"
-        self.txt_password = "#ipassword"
-        self.btn_login = "//button[@type='submit']"
         self.header = HeaderComponent(page)
 
     def goto(self):

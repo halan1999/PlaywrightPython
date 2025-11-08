@@ -4,9 +4,7 @@ import time
 
 class HeaderComponent(BasePage):
 
-    def __init__(self, page):
-        super().__init__(page)
-        self.header_items = [
+    header_items = [
             "//header//a[@data-original-title='Account Settings']",
             "//header//span[@data-original-title='Apps']",
             "//header//a[@data-original-title='System Calendar']",
@@ -14,9 +12,12 @@ class HeaderComponent(BasePage):
             "//header//a[@data-toggle='dropdown']//img[contains(@src,'languages_flag')]",
             "//header//a[@data-original-title='Todo List']"
         ]
-        self.icon_profife = "//img[@class='user-avtar']"
-        self.btn_logout = "//span[normalize-space()='Logout']"
+    icon_profife = "//img[@class='user-avtar']"
+    btn_logout = "//span[normalize-space()='Logout']"
     
+    def __init__(self, page):
+        super().__init__(page)
+        
     def click_all_items(self):
         for index, item in enumerate(self.header_items):
             self._click(item)
