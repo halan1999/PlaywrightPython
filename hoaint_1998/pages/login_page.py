@@ -1,12 +1,14 @@
 from playwright.sync_api import Page
 from core.common_locators import CommonLocators
 from core.base_page import BasePage
+from components.header_components import HeaderComponents
 from utils.messages import ERROR_MESSAGE
 
 class LoginPage(BasePage):
     def __init__(self, page):
         super().__init__(page)
         self.page = page
+        self.header = HeaderComponents(page)
         self.username_input_locator = CommonLocators._input_by_attribute_xpath("id", "iusername")
         self.password_input_locator = CommonLocators._input_by_attribute_xpath("id", "ipassword")
         self.login_button_locator = CommonLocators._button_by_attribute_xpath("type", "submit")
@@ -44,3 +46,6 @@ class LoginPage(BasePage):
     def go_to_forgot_password_page(self):
         self._click(self.forgot_password_link_locator)
         self._expect_to_have_url("/forgot-password")
+
+    def run_header_flow(self):
+        self.header._click_and_take_screenshot_all_button_in_header()
