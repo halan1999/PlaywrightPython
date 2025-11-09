@@ -1,4 +1,4 @@
-from buoi5.hrm.pages.base_page import BasePage
+from buoi6.hrm.pages.base_page import BasePage
 
 
 class SizeBarComponent(BasePage):
