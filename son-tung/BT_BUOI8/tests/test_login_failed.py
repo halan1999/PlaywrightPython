@@ -5,7 +5,7 @@ def test_login_failed(page):
 
     # Open webpage and login
     login_page.goto()
-    login_page.login("invalid_user")
+    login_page.login_user("invalid_user")
 
     # Assert Error message popup
     login_page.assert_error_message_visible()

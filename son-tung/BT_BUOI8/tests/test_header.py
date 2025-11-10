@@ -4,7 +4,7 @@ def test_header(page):
     login_page = LoginPage(page)
 
     # Login
-    login_page.login("valid_user")
+    login_page.login_user("valid_user")
     login_page.assert_login_successful()
 
     # Click all button in header bar

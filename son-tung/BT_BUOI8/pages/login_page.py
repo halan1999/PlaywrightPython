@@ -17,19 +17,21 @@ class LoginPage(BasePage):
 
     def goto(self):
         self._visit(self.URL)
-
-    def login(self, account):
-        self.goto()
         self._take_screenshot("Open web.png")
+
+    def login_user(self, account):
+        self.goto()
 
         with open("BT_BUOI8/data/users.json") as f:
             user = json.load(f)
 
-        valid = user[account]
+        login = user[account]
 
-        self._fill(self.USERNAME_FIELD, valid["username"])
-        self._fill(self.PASSWORD_FIELD, valid["password"])
+        self._fill(self.USERNAME_FIELD, login["username"])
+        self._fill(self.PASSWORD_FIELD, login["password"])
         self._click(self.LOGIN_BUTTON)
+
+        self._take_screenshot("Login_user.png")
 
     def assert_login_successful(self):
         expect(self.page).to_have_url("https://hrm.anhtester.com/erp/desk")
