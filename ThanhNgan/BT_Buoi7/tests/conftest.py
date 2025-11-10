@@ -9,9 +9,9 @@ def loginPage(page):
     return loginPage
 
 @pytest.fixture
-def loggedPage(loginPage):
+def loggedinPage(loginPage):
     loginPage.login_with_valid_user()
-    return loginPage
+    yield loginPage
 
 @pytest.fixture(scope="class")
 def logged_in_class(request, browser):
