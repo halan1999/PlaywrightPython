@@ -44,6 +44,17 @@ class LoginPage(BasePage):
         expect(self.page.locator(toast_message)).to_contain_text("Invalid Login Credentials.")
         self._take_screenshot("login_failed")
 
+    def login_with_empty_credential(self):
+        credential = self.load_credential("hrm_empty_credential")
+        self._fill(self.txt_username, credential["username"])
+        self._fill(self.txt_password, credential["password"])
+        self._click(self.btn_login)
+        toast_error = "//div[@class='toast toast-error']"
+        toast_message = "//div[@class='toast-message']"
+        expect(self.page.locator(toast_error)).to_be_visible()
+        expect(self.page.locator(toast_message)).to_contain_text("The username field is required.")
+        self._take_screenshot("login_failed_empty_credential")
+
 
     def run_header_flow(self):
         self.header.click_all_items()   
