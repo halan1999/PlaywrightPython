@@ -1,4 +1,4 @@
-from pages.login_page import LoginPage
+from pages.Login.login_page import LoginPage
 from components.header_components import HeaderComponents
 from components.menu_bar_components import MenuBarComponents
 import pytest

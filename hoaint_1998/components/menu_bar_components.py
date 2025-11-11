@@ -3,94 +3,74 @@ from core.base_page import BasePage
 from core.common_locators import CommonLocators
 
 class MenuBarComponents(BasePage):
+    MENU_HOME_BUTTON = CommonLocators._normalize_space_xpath("span", "Home")
+    MENU_ATTENDANCE_BUTTON = CommonLocators._normalize_space_xpath("span", "Attendance")
+    MENU_PROJECT_BUTTON = CommonLocators._normalize_space_xpath("span", "Projects")
+    MENU_TASKS_BUTTON = CommonLocators._normalize_space_xpath("span", "Tasks")
+    MENU_PAYROLL_BUTTON = CommonLocators._normalize_space_xpath("span", "Payroll")
+    MENU_REQUEST_BUTTON = CommonLocators._normalize_space_xpath("a", "Requests")
+    MENU_LEAVE_REQUEST_BUTTON = CommonLocators._normalize_space_xpath("a", "Leave Request")
+    MENU_EXPENSE_CLAIM_BUTTON = CommonLocators._normalize_space_xpath("a", "Expense Claim")
+    MENU_REQUEST_LOAN_BUTTON = CommonLocators._normalize_space_xpath("a", "Request Loan")
+    MENU_TRAVEL_REQUEST_BUTTON = CommonLocators._normalize_space_xpath("a", "Travel Request")
+    MENU_ADVANCE_SALARY_BUTTON = CommonLocators._normalize_space_xpath("a", "Advance Salary")
+    MENU_OVERTIME_REQUEST_BUTTON = CommonLocators._normalize_space_xpath("a", "Overtime Request")
+    MENU_HELPDESK_BUTTON = CommonLocators._normalize_space_xpath("span", "Helpdesk")
+    MENU_TRAINING_SESSION_BUTTON = CommonLocators._normalize_space_xpath("span", "Training Sessions")
+    MENU_EMPLOYEE_BUTTON = CommonLocators._normalize_space_xpath("span", "Employees")
+    MENU_RECRUITMENT_ATS_BUTTON = CommonLocators._normalize_space_xpath("span", "Recruitment (ATS)")
+    MENU_CORE_HR_BUTTON = CommonLocators._normalize_space_xpath("a", "Core HR")
+    MENU_DEPARTMENT_BUTTON = CommonLocators._normalize_space_xpath("a", "Department")
+    MENU_DESIGNATION_BUTTON = CommonLocators._normalize_space_xpath("a", "Designation")
+    MENU_POLICIES_BUTTON = CommonLocators._normalize_space_xpath("a", "Policies")
+    MENU_MAKE_ANNOUNCEMENT_BUTTON = CommonLocators._normalize_space_xpath("a", "Make Announcement")
+    MENU_ORGANIZATION_CHART_BUTTON = CommonLocators._normalize_space_xpath("a", "Organization Chart")
+    MENU_FINANCE_BUTTON = CommonLocators._normalize_space_xpath("span", "Finance")
+    MENU_PERFORMANCE_PMS_BUTTON = CommonLocators._normalize_space_xpath("a", "Performance (PMS)")
+    MENU_KPI_INDICATOR_BUTTON = CommonLocators._normalize_space_xpath("a", "KPI (Indicator)")
+    MENU_KPA_APPRAISAL_BUTTON = CommonLocators._normalize_space_xpath("a", "KPA (Appraisal)")
+    MENU_COMPETENCIES_BUTTON = CommonLocators._normalize_space_xpath("a", "Competencies")
+    MENU_TRACK_GOALS_OKRS_BUTTON = CommonLocators._normalize_space_xpath("a", "Track Goals (OKRs)")
+    MENU_GOAL_TYPE_BUTTON = CommonLocators._normalize_space_xpath("a", "Goal Type")
+    MENU_GOALS_CALENDAR_BUTTON = CommonLocators._normalize_space_xpath("a", "Goals Calendar")
+    MENU_INVENTORY_CONTROL_BUTTON = CommonLocators._normalize_space_xpath("span", "Inventory Control")
+    MENU_WAREHOUSES_BUTTON = CommonLocators._normalize_space_xpath("a", "Warehouses")
+    MENU_PRODUCT_BUTTON = "//a[@href='#!'][normalize-space()='Products']"
+    MENU_SUPPLIERS_BUTTON = CommonLocators._normalize_space_xpath("a", "Suppliers")
+    MENU_PURCHASES_BUTTON = CommonLocators._normalize_space_xpath("a", "Purchases")
+    MENU_SALES_ORDER_BUTTON = CommonLocators._normalize_space_xpath("a", "Sales Order")
+    MENU_MANAGE_CLIENTS_BUTTON = CommonLocators._normalize_space_xpath("span", "Manage Clients")
+    MENU_LEADS_BUTTON = CommonLocators._normalize_space_xpath("span", "Leads")
+    MENU_INVOICES_BUTTON = CommonLocators._normalize_space_xpath("span", "Invoices")
+    MENU_ESTIMATES_BUTTON = CommonLocators._normalize_space_xpath("span", "Estimates")
+    MENU_DISCIPLINARY_CASES_BUTTON = CommonLocators._normalize_space_xpath("span", "Disciplinary Cases")
+
+
     def __init__(self, page):
         super().__init__(page)
         self.page = page
-        self.menu_home_button = CommonLocators._normalize_space_xpath("span", "Home")
-        self.menu_attendance_button = CommonLocators._normalize_space_xpath("span", "Attendance")
-        self.menu_project_button = CommonLocators._normalize_space_xpath("span", "Projects")
-        self.menu_tasks_button = CommonLocators._normalize_space_xpath("span", "Tasks")
-        self.menu_payroll_button = CommonLocators._normalize_space_xpath("span", "Payroll")
-        self.menu_request_button = CommonLocators._normalize_space_xpath("a", "Requests")
-        self.menu_leave_request_button = CommonLocators._normalize_space_xpath("a", "Leave Request")
-        self.menu_expense_claim_button = CommonLocators._normalize_space_xpath("a", "Expense Claim")
-        self.menu_request_loan_button = CommonLocators._normalize_space_xpath("a", "Request Loan")
-        self.menu_travel_request_button = CommonLocators._normalize_space_xpath("a", "Travel Request")
-        self.menu_advance_salary_button = CommonLocators._normalize_space_xpath("a", "Advance Salary")
-        self.menu_overtime_request_button = CommonLocators._normalize_space_xpath("a", "Overtime Request")
-        self.menu_helpdesk_button = CommonLocators._normalize_space_xpath("span", "Helpdesk")
-        self.menu_training_session_button = CommonLocators._normalize_space_xpath("span", "Training Sessions")
-        self.menu_employee_button = CommonLocators._normalize_space_xpath("span", "Employees")
-        self.menu_recruitment_ast_button = CommonLocators._normalize_space_xpath("span", "Recruitment (ATS)")
-        self.menu_core_hr_button = CommonLocators._normalize_space_xpath("a", "Core HR")
-        self.menu_deparment_button = CommonLocators._normalize_space_xpath("a", "Department")
-        self.menu_designation_button = CommonLocators._normalize_space_xpath("a", "Designation")
-        self.menu_policies_button = CommonLocators._normalize_space_xpath("a", "Policies")
-        self.menu_make_announcement_button = CommonLocators._normalize_space_xpath("a", "Make Announcement")
-        self.menu_organization_chart_button = CommonLocators._normalize_space_xpath("a", "Organization Chart")
-        self.menu_finance_button =CommonLocators._normalize_space_xpath("span", "Finance")
-        self.menu_performance_pms_button = CommonLocators._normalize_space_xpath("a", "Performance (PMS)")
-        self.menu_kpi_indicator_button = CommonLocators._normalize_space_xpath("a", "KPI (Indicator)")
-        self.menu_kpa_appraisal_button = CommonLocators._normalize_space_xpath("a", "KPA (Appraisal)")
-        self.menu_campetencies_button = CommonLocators._normalize_space_xpath("a", "Competencies")
-        self.menu_tract_goals_okrs_button = CommonLocators._normalize_space_xpath("a", "Track Goals (OKRs)")
-        self.menu_goal_type_button = CommonLocators._normalize_space_xpath("a", "Goal Type")
-        self.menu_goals_calendar_button = CommonLocators._normalize_space_xpath("a", "Goals Calendar")
-        self.menu_inventory_control_button = CommonLocators._normalize_space_xpath("span", "Inventory Control")
-        self.menu_warehourses_button = CommonLocators._normalize_space_xpath("a", "Warehouses")
-        self.menu_product_button = "//a[@href='#!'][normalize-space()='Products']"
-        self.menu_suppliers_button = CommonLocators._normalize_space_xpath("a", "Suppliers")
-        self.menu_purchases_button = CommonLocators._normalize_space_xpath("a", "Purchases")
-        self.menu_sales_order_button = CommonLocators._normalize_space_xpath("a", "Sales Order")
-        self.menu_manage_clients_button = CommonLocators._normalize_space_xpath("span", "Manage Clients")
-        self.menu_leads_button = CommonLocators._normalize_space_xpath("span", "Leads")
-        self.menu_invoices_button = CommonLocators._normalize_space_xpath("span", "Invoices")
-        self.menu_estimates_button = CommonLocators._normalize_space_xpath("span", "Estimates")
-        self.menu_disciplinary_cases_button = CommonLocators._normalize_space_xpath("span", "Disciplinary Cases")
 
     def _click_and_take_screenshot_all_button_in_menu(self):
         list_menu_buttons = [
-            (self.menu_home_button, "self.menu_home_button"),
-            (self.menu_attendance_button, "self.menu_attendance_button"),
-            (self.menu_project_button, "self.menu_project_button"),
-            (self.menu_tasks_button, "self.menu_tasks_button"),
-            (self.menu_payroll_button, "self.menu_payroll_button"),
-            (self.menu_request_button, "self.menu_request_button"),
-            # (self.menu_leave_request_button, "self.menu_leave_request_button"),
-            # (self.menu_expense_claim_button, "self.menu_expense_claim_button"),
-            # (self.menu_request_loan_button, "self.menu_request_loan_button"),
-            # (self.menu_travel_request_button, "self.menu_travel_request_button"),
-            # (self.menu_advance_salary_button, "self.menu_advance_salary_button"),
-            # (self.menu_overtime_request_button, "self.menu_overtime_request_button"),
-            (self.menu_helpdesk_button, "self.menu_helpdesk_button"),
-            (self.menu_training_session_button, "self.menu_training_session_button"),
-            (self.menu_employee_button, "self.menu_employee_button"),
-            (self.menu_recruitment_ast_button, "self.menu_recruitment_ast_button"),
-            (self.menu_core_hr_button, "self.menu_core_hr_button"),
-            # (self.menu_deparment_button, "self.menu_deparment_button"),
-            # (self.menu_designation_button, "self.menu_designation_button"),
-            # (self.menu_policies_button, "self.menu_policies_button"),
-            # (self.menu_make_announcement_button, "self.menu_make_announcement_button"),
-            # (self.menu_organization_chart_button, "self.menu_organization_chart_button"),
-            (self.menu_finance_button, "self.menu_finance_button"),
-            (self.menu_performance_pms_button, "self.menu_performance_pms_button"),
-            # (self.menu_kpi_indicator_button, "self.menu_kpi_indicator_button"),
-            # (self.menu_kpa_appraisal_button, "self.menu_kpa_appraisal_button"),
-            # (self.menu_campetencies_button, "self.menu_campetencies_button"),
-            # (self.menu_tract_goals_okrs_button, "self.menu_tract_goals_okrs_button"),
-            # (self.menu_goal_type_button, "self.menu_goal_type_button"),
-            # (self.menu_goals_calendar_button, "self.menu_goals_calendar_button"),
-            (self.menu_inventory_control_button, "self.menu_inventory_control_button"),
-            # (self.menu_warehourses_button, "self.menu_warehourses_button"),
-            # (self.menu_product_button, "self.menu_product_button"),
-            # (self.menu_suppliers_button, "self.menu_suppliers_button"),
-            # (self.menu_purchases_button, "self.menu_purchases_button"),
-            # (self.menu_sales_order_button, "self.menu_sales_order_button"),
-            (self.menu_manage_clients_button, "self.menu_manage_clients_button"),
-            (self.menu_leads_button, "self.menu_leads_button"),
-            (self.menu_invoices_button, "self.menu_invoices_button"),
-            (self.menu_estimates_button, "self.menu_estimates_button"),
-            (self.menu_disciplinary_cases_button, "self.menu_disciplinary_cases_button"),
+            (self.MENU_HOME_BUTTON, "self.menu_home_button"),
+            (self.MENU_ATTENDANCE_BUTTON, "self.menu_attendance_button"),
+            (self.MENU_PROJECT_BUTTON, "self.menu_project_button"),
+            (self.MENU_TASKS_BUTTON, "self.menu_tasks_button"),
+            (self.MENU_PAYROLL_BUTTON, "self.menu_payroll_button"),
+            (self.MENU_REQUEST_BUTTON, "self.menu_request_button"),
+            (self.MENU_HELPDESK_BUTTON, "self.menu_helpdesk_button"),
+            (self.MENU_TRAINING_SESSION_BUTTON, "self.menu_training_session_button"),
+            (self.MENU_EMPLOYEE_BUTTON, "self.menu_employee_button"),
+            (self.MENU_RECRUITMENT_ATS_BUTTON, "self.menu_recruitment_ast_button"),
+            (self.MENU_CORE_HR_BUTTON, "self.menu_core_hr_button"),
+            (self.MENU_FINANCE_BUTTON, "self.menu_finance_button"),
+            (self.MENU_PERFORMANCE_PMS_BUTTON, "self.menu_performance_pms_button"),
+            (self.MENU_INVENTORY_CONTROL_BUTTON, "self.menu_inventory_control_button"),
+            (self.MENU_MANAGE_CLIENTS_BUTTON, "self.menu_manage_clients_button"),
+            (self.MENU_LEADS_BUTTON, "self.menu_leads_button"),
+            (self.MENU_INVOICES_BUTTON, "self.menu_invoices_button"),
+            (self.MENU_ESTIMATES_BUTTON, "self.menu_estimates_button"),
+            (self.MENU_DISCIPLINARY_CASES_BUTTON, "self.menu_disciplinary_cases_button"),
         ]
         for locator, title in list_menu_buttons:
             self._click(locator)
