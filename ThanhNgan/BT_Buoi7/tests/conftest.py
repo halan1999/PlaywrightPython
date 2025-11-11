@@ -18,7 +18,9 @@ def logged_in_class(request, browser):
     context = browser.new_context()
     page = context.new_page()
 
-    loginPage = LoginPage(loggedinPage)
+    loginPage = LoginPage(page)
+    loginPage.goto()
+    loginPage.login_with_valid_user()
 
     # Gán vào class
     request.cls.page = page
