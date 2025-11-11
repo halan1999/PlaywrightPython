@@ -4,7 +4,7 @@ from playwright.sync_api import expect
 import time
 
 
-class MenuHrmPage(BasePage):
+class MenuPage(BasePage):
     URL = "https://hrm.anhtester.com/erp/login"
     USERNAME_INPUT = "//input[@id='iusername']"
     PASSWORD_INPUT = "//input[@id='ipassword']"
