@@ -1,5 +1,4 @@
-from BT_BUOI8.components.header_component import HeaderComponent
-from BT_BUOI8.pages.login_page import LoginPage
+from BT_BUOI8.pages.login.login_page import LoginPage
 
 def test_logout(page):
     login_page = LoginPage(page)

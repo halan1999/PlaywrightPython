@@ -1,5 +1,5 @@
 import pytest
-from BT_BUOI8.pages.login_page import LoginPage
+from BT_BUOI8.pages.login.login_page import LoginPage
 
 @pytest.fixture
 def login_page(page):

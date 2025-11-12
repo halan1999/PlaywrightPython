@@ -1,8 +1,4 @@
-from BT_BUOI8.pages.login_page import LoginPage
-
-def test_header(page):
-    login_page = LoginPage(page)
-
+def test_header(login_page):
     # Login
     login_page.login_user("valid_user")
     login_page.assert_login_successful()

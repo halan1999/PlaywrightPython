@@ -1,6 +1,6 @@
 import json
 
-from BT_BUOI8.components.header_component import HeaderComponent
+from BT_BUOI8.components.header.header_component import HeaderComponent
 from BT_BUOI8.core.base_page import BasePage
 from playwright.sync_api import expect
 

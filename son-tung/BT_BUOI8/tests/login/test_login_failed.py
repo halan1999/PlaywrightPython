@@ -1,4 +1,4 @@
-from BT_BUOI8.pages.login_page import LoginPage
+from BT_BUOI8.pages.login.login_page import LoginPage
 
 def test_login_failed(page):
     login_page = LoginPage(page)
