@@ -1,4 +1,5 @@
 from playwright.sync_api import Page, expect, Locator, TimeoutError
+import os
 
 class BasePage:
     def __init__(self, page:Page):
@@ -23,8 +24,9 @@ class BasePage:
         print(f"[Fill] '{text} into {locator}")
         self._get_locator(locator).fill(text)
     
-    def load_
     def _take_screenshot(self, filename: str):
-        path = f"screenshots/{filename}"
+        folder = os.path.join("LieuLe", "Baitap6", "screenshots")
+        os.makedirs(folder, exist_ok=True)
+        path = os.path.join(folder, filename)
         self.page.screenshot(path=path)
         print(f"[SCREENSHOT] Save at: {path}")
