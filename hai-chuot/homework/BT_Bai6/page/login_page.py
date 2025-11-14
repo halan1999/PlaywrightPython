@@ -5,7 +5,6 @@ from playwright.sync_api import Page, expect
 from core.base_page import BasePage
 
 class LoginPage(BasePage):
-    XPATH_AUTH_CONTENT = '//div[@class="auth-content"]'
     XPATH_IPT_USERNAME = '//input[@id="iusername"]'
     XPATH_IPT_PASSWORD = '//input[@id="ipassword"]'
     XPATH_BTN_LOGIN = '//button[@type="submit"]'
