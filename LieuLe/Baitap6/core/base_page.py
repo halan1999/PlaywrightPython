@@ -30,3 +30,21 @@ class BasePage:
         path = os.path.join(folder, filename)
         self.page.screenshot(path=path)
         print(f"[SCREENSHOT] Save at: {path}")
+    
+    def take_before_scroll_screenshot(self, selector, file_name):
+        menu = self.page.locator(selector)
+        folder = os.path.join("LieuLe", "Baitap6", "screenshots")
+        os.makedirs(os.path.dirname(folder), exist_ok=True)
+        menu.screenshot(path=file_name)
+
+    def take_after_scroll_screenshot(self, selector, file_name):
+            menu = self.page.locator(selector)
+            self.page.evaluate("""(menu) => {
+                 menu.scrollTo(0, menu.scrollHeight);
+            }""",
+            menu.element_handle())
+            self.page.wait_for_timeout(1000)
+            folder = os.path.join("LieuLe", "Baitap6", "screenshots")
+            os.makedirs(folder, exist_ok=True)
+            path = os.path.join(folder, file_name)
+            menu.screenshot(path=path)

@@ -1,5 +1,5 @@
 from playwright.sync_api import sync_playwright
-from ..components.Header_component import HeaderComponent
+from ..components.header_component import HeaderComponent
 from ..pages.login_page import LoginPage 
 
 def test_header_click_screenshot():

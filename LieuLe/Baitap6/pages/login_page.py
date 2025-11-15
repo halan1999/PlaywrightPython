@@ -8,7 +8,7 @@ class LoginPage(BasePage):
     Password = "#ipassword"
     Loginbtn = "button[type='submit']"
     Dasboard_url = "https://hrm.anhtester.com/erp/desk"
-    Error_message = "//div[@class='toast-message']"
+    Error_message = "//div[contains(@class,'toast-message')]"
 
 
     def __init__(self, page, credential_path):
@@ -24,8 +24,8 @@ class LoginPage(BasePage):
     def goto(self):
         self._visit(self.URL)
 
-    def loginwith(self, account_type="valid"):
-        username, password = self.load_credentials()
+    def loginwith(self, account_type = "valid"):
+        username, password = self.load_credentials(account_type)
         self.goto()
         #self._take_screenshot("before_login.jpeg")
         self._fill(self.Username, username)

@@ -27,7 +27,7 @@ def test_login_unsuccessfully():
 
         error_text = login_page.get_error_message()
         print("Toast mesage:", error_text)
-        expected_message = "Invalid login credentials" 
+        expected_message = "Invalid Login Credentials." 
         assert expected_message in error_text, f"Expected '{expected_message}', but got '{error_text}'"
         browser.close() 
         
