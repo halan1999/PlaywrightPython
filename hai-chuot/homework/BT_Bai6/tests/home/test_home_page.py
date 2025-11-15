@@ -13,7 +13,7 @@ class TestHomePage:
 
         for i, xpath_header_enum in enumerate(lst_xpath_header_enum, start=1):
             self.home_page.click_header_function(xpath_header_enum)
-            self.home_page._take_screenshot(f'header/header_function_{i}.png')
+            self.home_page._take_screenshot(f'header/header_icon_{i}.png')
 
     def test_click_apps_icon(self):
         lst_apps_items = [
@@ -30,11 +30,11 @@ class TestHomePage:
             "Custom Fields"
         ]
 
-        for i, apps_items in enumerate(lst_apps_items, start=1):
-            self.home_page.click_apps_header_function(XpathHeader.APPS, apps_items)
-            self.home_page._take_screenshot(f'apps_menu/apps_subfunction_{i}.png')
+        for apps_items in lst_apps_items:
+            self.home_page.click_apps_header_function(apps_items)
+            self.home_page._take_screenshot(f'apps_menu/sub_menu_{apps_items}.png')
 
-    def test_click_single_header(self):
+    def test_click_single_menu(self):
         lst_menu_items = [
             "Home",
             "Attendance",
@@ -53,9 +53,9 @@ class TestHomePage:
             "Disciplinary Cases"
         ]
 
-        for i, menu_item in enumerate(lst_menu_items, start=1):
+        for menu_item in lst_menu_items:
             self.home_page.click_menu_function(menu_item)
-            self.home_page._take_screenshot(f'single_menu/menu_{i}.png')
+            self.home_page._take_screenshot(f'single_menu/menu_{menu_item}.png')
 
     def test_click_corehr_menu(self):
         lst_menu_hr = [
@@ -66,6 +66,6 @@ class TestHomePage:
             "Organization Chart"
         ]
 
-        for i, menu_hr in enumerate(lst_menu_hr, start=1):
+        for menu_hr in lst_menu_hr:
             self.home_page.click_sub_menu_function("Core HR" , menu_hr)
-            self.home_page._take_screenshot(f'corehr_menu/menu_{i}.png')
+            self.home_page._take_screenshot(f'corehr_menu/core_hr_menu_{menu_hr}.png')

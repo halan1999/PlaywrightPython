@@ -15,16 +15,6 @@ class BasePage:
         locator = self.page.locator(xpath)
         locator.fill(input_data)
 
-    def _click_menu(self, main_menu : str):
-        xpath_main_menu = f'//a[normalize-space()="{main_menu}"]'
-        self.page.locator(xpath_main_menu).click()
-
-    def _click_menu(self, main_menu : str, sub_menu : str):
-        xpath_main_menu = f'//a[normalize-space()="{main_menu}"]'
-        xpath_sub_menu = f'{xpath_main_menu}/following-sibling::ul//a[normalize-space()="{sub_menu}"]'
-        self.page.locator(xpath_main_menu).click()
-        self.page.locator(xpath_sub_menu).click()
-
     def _take_screenshot(self, filename: str):
         path = f"screenshots/{filename}"
         self.page.screenshot(path=path)
