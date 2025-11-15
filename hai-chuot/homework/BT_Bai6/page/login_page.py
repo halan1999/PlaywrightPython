@@ -1,8 +1,5 @@
-import time
-
-import pytest
 from playwright.sync_api import Page, expect
-
+from components.header_component import HeaderComponent, XpathHeader
 from core.base_page import BasePage
 
 class LoginPage(BasePage):
@@ -20,6 +17,11 @@ class LoginPage(BasePage):
     def get_message_error(self):
         """Getter"""
         return self.__message_error
+    
+    @property
+    def get_page(self):
+        """Getter"""
+        return self.page
 
     def login(self, username : str, password : str):
         self._goToURL(self.base_url)
@@ -46,3 +48,13 @@ class LoginPage(BasePage):
 
         error_message_element = self.page.locator('//div[contains(@class,"toast-error")]//div[@class="toast-message"]')
         self.__message_error = error_message_element.inner_text()
+
+    def logout_from_header(self):
+        header = HeaderComponent(self.page)
+        header.click_header(XpathHeader.PROFILE_ACCOUNT, "Logout")
+        self.verify_page_visible()
+
+    def logout_by_button(self):
+        xpath_button_logout = '//a[normalize-space()="Logout" and contains(@class,"btn")]'
+        self._click(xpath_button_logout)
+        self.verify_page_visible()

@@ -1,10 +1,11 @@
+
 from playwright.sync_api import Page, expect
 
 class BaseComponent:
     def __init__(self, page : Page):
         self.page = page
 
-    def _click(self, xpath : str):
+    def _click_single_component(self, xpath : str):
         locator = self.page.locator(xpath)
         locator.click()
 
