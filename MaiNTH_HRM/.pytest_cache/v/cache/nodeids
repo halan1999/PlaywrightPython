@@ -1,6 +1,0 @@
-[
-  "tests/test_header.py::TestHeader::test_Header",
-  "tests/test_login.py::test_login_blank_user",
-  "tests/test_login.py::test_login_invalid_user",
-  "tests/test_login.py::test_login_success"
-]
