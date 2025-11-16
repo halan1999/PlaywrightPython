@@ -14,3 +14,4 @@ def test_scroll_left_menu ():
         login_page.take_before_scroll_screenshot(left_menu.left_menu1,"before_scroll_left_menu.png")
         left_menu.take_after_scroll_screenshot(left_menu.left_menu1,"after_scroll_left_menu.png")
         browser.close()
+        
