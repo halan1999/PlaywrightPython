@@ -1,14 +1,8 @@
 from components.header_components import HeaderComponent
-from pages.login_page import LoginPage
 from playwright.sync_api import expect, sync_playwright
 import json, re, time
 
-def test_click_icon_header(page):
-     # open login page
-        login_page = LoginPage(page)
-        login_page.goto()
-    # login by username / password
-        login_page.login_withUsernamePassword()
+def test_click_icon_header(perform_login, page):
     # click on icon logo
         click_header_icon = HeaderComponent(page)
         click_header_icon.test_click_icon_logo_header()
