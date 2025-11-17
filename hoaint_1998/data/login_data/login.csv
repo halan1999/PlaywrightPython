@@ -1,0 +1,6 @@
+username,password,expect,type_error
+admin_example,123456,pass,
+admin_example,123,error,password_too_short
+hoaint,1346578,error,invalid_credentials
+,1234567,error,required_username
+hoaint,,error,required_password
