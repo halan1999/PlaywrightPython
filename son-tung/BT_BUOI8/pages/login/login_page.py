@@ -17,7 +17,7 @@ class LoginPage(BasePage):
 
     def goto(self):
         self._visit(self.URL)
-        self._take_screenshot("Open web.png")
+        self._take_screenshot("Open_web.png")
 
     def login_user(self, account):
         self.goto()
