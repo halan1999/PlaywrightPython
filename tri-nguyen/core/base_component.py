@@ -8,7 +8,7 @@ class BaseHeaderComponent:
         self.apps = page.locator("//span[@data-original-title='Apps']/parent::a")
         self.system_calendar = page.locator("//a[@data-original-title='System Calendar']")
         self.system_report = page.locator("//a[@data-original-title='System Reports']")
-        self.language_icon = page.locator("//img[@src='https://hrm.anhtester.com/public/uploads/languages_flag/en.gif']/parent::a[@class='pc-head-link dropdown-toggle arrow-none mr-0']")
+        self.language_icon = page.locator("//ul//li[1]//a[contains(@class, 'dropdown-toggle')]")
         self.todo_list = page.locator("//a[@data-original-title='Todo List']")
         # self.account_profile = page.locator("//header//a//img[@class='user-avtar']")
         
