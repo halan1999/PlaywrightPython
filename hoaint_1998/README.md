@@ -1,5 +1,3 @@
-https://crm.anhtester.com/admin/authentication
-
-admin@example.com
-
-123456
+base_url = "https://hrm.anhtester.com/erp"
+username = "admin_example"
+password = "123456"
