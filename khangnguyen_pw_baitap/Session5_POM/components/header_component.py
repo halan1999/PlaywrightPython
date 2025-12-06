@@ -12,7 +12,7 @@ class HeaderComponent(BasePage):
         self._apps_icon = page.locator('//div[@class="header-wrapper"]//span[contains(@data-original-title,"Apps")]')
         self._system_calendar_icon = page.locator('//div[@class="header-wrapper"]//a[contains(@data-original-title,"System Calendar")]')
         self._system_reports_icon = page.locator('//div[@class="header-wrapper"]//a[contains(@data-original-title,"System Reports")]')
-        self._user_profile = page.locator('//li[contains(@class,"dropdown")]//span[text()="admin_example"]')
+        self._user_profile = page.locator('//img[contains(@src,"user")]/parent::a[contains(@class,"dropdown")]')
         
         self.header_icons = [
             self._account_settings_icon,
