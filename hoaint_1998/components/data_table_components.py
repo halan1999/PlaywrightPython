@@ -4,7 +4,7 @@ from core.base_page import BasePage
 class DataTableComponents(BasePage):
     SEARCH_INPUT = CommonLocators._input_by_attribute_xpath("type", "search")
     TABLE = "//table[@id='xin_table']"
-    HEADERS_TABLE = ""
+    HEADERS_TABLE = lambda name: f"//thead//th[normalize-space()='{name}']"
     ROWS_TABLE = "//tbody"
     EDIT_ICON = lambda name : f"//td[normalize-space()='{name}']//i[@class='feather icon-edit']"
     DELETE_ICON = lambda name : f"//td[normalize-space()='{name}']//i[@class='feather icon-trash-2']"
@@ -20,6 +20,7 @@ class DataTableComponents(BasePage):
     
     def __init__(self, page):
         super().__init__(page)
+        self.page = page
 
     def _click_edit_icon(self, record: str):
         self._click(self.EDIT_ICON(record))
@@ -40,5 +41,8 @@ class DataTableComponents(BasePage):
         self._click(self.SUBMIT_BUTTON_POPUP)
         # xác định popup đã ẩn
         self._expect_to_be_hidden(self.POPUP)
+
+    def _click_column_table(self, col_name: str):
+        self._click(self.HEADERS_TABLE(col_name))
 
     

@@ -28,6 +28,25 @@ class BasePage():
     def _fill(self, locator: str, value: str):
         return self.page.locator(locator).fill(value)
     
+    def _inner_text(self, locator: str):
+        return self._get_locator(locator).inner_text().strip()
+    
+    def _bring_to_font(self):
+        """
+        trở về trang mà mình muốn
+        """
+        self.page.bring_to_front()
+
+    def _open_new_tab(self, locator: str, timeout=15000):
+        """
+        Thực hiện mở mới tab thông qua action click
+        """
+        with self.page.context.expect_page(timeout=timeout) as new_page_info:
+            self._click(locator)
+        new_page = new_page_info.value
+        new_page.wait_for_load_state("domcontentloaded")
+        return new_page
+    
     #--------------------------
     #------ LocatorAssertions = check the condition -------
     #--------------------------
