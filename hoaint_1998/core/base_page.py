@@ -54,32 +54,44 @@ class BasePage():
         return expect(self.page).to_have_url(re.compile(f".*{url}$"))
       
     
-    def _expect_to_be_visible(self, locator: str):
+    def _expect_to_be_visible(self, locator: str, message: str = None):
         """
         check whether an element is visible in the browser's viewport 
         """
-        return expect(self.page.locator(locator)).to_be_visible()
+        try:
+            expect(self._get_locator(locator)).to_be_visible()
+        except Exception:
+            raise AssertionError(message or f"{locator} is not visible")
         
     
-    def _expect_to_be_hidden(self, locator: str):
+    def _expect_to_be_hidden(self, locator: str, message: str = None):
         """
         check if element is hidden
         """
-        return expect(self.page.locator(locator)).to_be_hidden()
+        try:
+            expect(self._get_locator(locator)).to_be_hidden()
+        except Exception:
+            raise AssertionError(message or f"{locator} is not hidden")
         
     
-    def _expect_to_be_disabled(self, locator: str):
+    def _expect_to_be_disabled(self, locator: str, message: str = None):
         """
         check whether an element is disabled (not interactable)
         """
-        return expect(self.page.locator(locator)).to_be_disabled()
+        try:
+            expect(self._get_locator(locator)).to_be_disabled()
+        except Exception:
+            raise AssertionError(message or f"{locator} is not disabled")
         
     
-    def _expect_to_be_enabled(self, locator: str):
+    def _expect_to_be_enabled(self, locator: str, message: str = None):
         """
         check whether an element is enable (interactable)
         """
-        return expect(self.page.locator(locator)).to_be_enabled()
+        try:
+            expect(self._get_locator(locator)).to_be_enabled()
+        except Exception:
+            raise AssertionError(message or f"{locator} is not enabled")
         
     
     #--------------------------

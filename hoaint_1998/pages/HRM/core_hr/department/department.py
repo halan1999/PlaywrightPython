@@ -9,8 +9,8 @@ from utils.data_factory import _get_random_test
 class Department(BasePage):
     def __init__(self, page):
         super().__init__(page)
-        self.data_table = DataTableComponents(page)
-        self.toast_message = ToastMessageComponents(page)
+        self.table = DataTableComponents(page)
+        self.toast = ToastMessageComponents(page)
         self.menu = MenuBarComponents(page)
         self.popup = PopupComponents(page)
 
@@ -20,10 +20,10 @@ class Department(BasePage):
     def _create_department(self, value: str = None): 
         self._enter_department_name(value)
         self._click_submit_button()
-        self.toast_message._expect_display_created_message()
+        self.toast._expect_display_created_message()
 
     def _edit_department(self, record: str, value: str = None):
-        self.data_table._click_edit_icon(record)
+        self.table._click_edit_icon(record)
         self._perform_update_department(value)
         self.popup._click_submit_button_popup()
         

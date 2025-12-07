@@ -34,8 +34,14 @@ class DataTableComponents(BasePage):
     def _click_column_table(self, col_name: str):
         self._click(self.HEADERS_TABLE(col_name))
 
-    def _perform_search(self, keywork):
-        self._fill(self.SEARCH_INPUT, keywork)
+    def _perform_search(self, keyword: str):
+        self._fill(self.SEARCH_INPUT, keyword)
 
+    def _search_with_no_result(self, keyword: str):
+        self._perform_search(keyword)
+        self._expect_to_be_visible(self.NO_DATA_ROW_TABLE)
 
+    def _search_with_result(self, keyword: str):
+        self._perform_search(keyword)
+        self._expect_to_be_hidden(self.NO_DATA_ROW_TABLE)
     
