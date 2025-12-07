@@ -23,20 +23,29 @@ class Department(BasePage):
         self.toast._expect_display_created_message()
 
     def _edit_department(self, record: str, value: str = None):
+        self.table._search_with_result(record)
         self.table._click_edit_icon(record)
         self._perform_update_department(value)
         self.popup._click_submit_button_popup()
-        
+
+    def _delete_department(self, record: str, confirm: bool=True):
+        self.table._search_with_result(record)
+        self.table._click_delete_icon(record)
+        self.popup._confirm_delete_record(confirm=confirm)
+        if confirm:
+            self.table._search_with_no_result(record)
+        else:
+            self.table._search_with_result(record)
     
     def _enter_department_name(self, value: str = None):
-        last_value = value or _get_random_test()
-        self._fill(DL.NAME_INPUT, last_value)
+        self.last_record_name = value or _get_random_test()
+        self._fill(DL.NAME_INPUT, self.last_record_name)
 
     def _click_submit_button(self):
         self._click(DL.SAVE_BUTTON)
 
     def _perform_update_department(self, value: str = None):
-        last_value = value or _get_random_test()
-        self._fill(DL.NAME_INPUT_EDIT_POPUP, last_value)
+        self.last_record_name = value or _get_random_test()
+        self._fill(DL.NAME_INPUT_EDIT_POPUP, self.last_record_name)
 
     
