@@ -24,6 +24,7 @@ class LoginPage(BasePage):
 
     def verify_login_success(self):
         self._expect_to_have_url("/desk")
+        self.page.wait_for_load_state("load")
         self._take_screenshot("should_be_login")
 
     def verify_login_failure_invalid_credentials(self):

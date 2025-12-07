@@ -17,3 +17,13 @@ class ToastMessageComponents(BasePage):
         message: nhập 1 phần nội dung message
         """
         self._expect_to_be_visible(self.XPATH_MESSAGE(message))
+
+    def _expect_display_created_message(self):
+        self._expect_to_be_visible(self.CREATE_MESSAGE)
+
+    def _expect_display_updated_messsage(self):
+        self._expect_to_be_visible(self.UPDATE_MESSAGE)
+
+    def _expect_display_deleted_messsage(self):
+        self._expect_to_be_visible(self.DELETE_MESSAGE)
+    

@@ -6,6 +6,7 @@ class DataTableComponents(BasePage):
     TABLE = "//table[@id='xin_table']"
     HEADERS_TABLE = lambda name: f"//thead//th[normalize-space()='{name}']"
     ROWS_TABLE = "//tbody"
+    NO_DATA_ROW_TABLE = "//tbody/tr[normalize-space()='No records available']"
     EDIT_ICON = lambda name : f"//td[normalize-space()='{name}']//i[@class='feather icon-edit']"
     DELETE_ICON = lambda name : f"//td[normalize-space()='{name}']//i[@class='feather icon-trash-2']"
     # Pagination Controls
@@ -15,8 +16,6 @@ class DataTableComponents(BasePage):
     PAGINATION_BUTTONS = "//ul[@class='pagination']/li"
     # Popup
     POPUP = "//div[@id='ajax_view_modal']"
-    CANCEL_BUTTON_POPUP = "//div[@id='ajax_view_modal']//button[normalize-space()='Close']"
-    SUBMIT_BUTTON_POPUP = "//div[@id='ajax_view_modal']//button[@type='submit']"
     
     def __init__(self, page):
         super().__init__(page)
@@ -32,17 +31,11 @@ class DataTableComponents(BasePage):
         # xác định popup hiển thị
         self._expect_to_be_visible(self.POPUP)
 
-    def _click_cancel_button_popup(self):
-        self._click(self.CANCEL_BUTTON_POPUP)
-        # xác định popup đã ẩn
-        self._expect_to_be_hidden(self.POPUP)
-
-    def _click_submit_button_popup(self):
-        self._click(self.SUBMIT_BUTTON_POPUP)
-        # xác định popup đã ẩn
-        self._expect_to_be_hidden(self.POPUP)
-
     def _click_column_table(self, col_name: str):
         self._click(self.HEADERS_TABLE(col_name))
+
+    def _perform_search(self, keywork):
+        self._fill(self.SEARCH_INPUT, keywork)
+
 
     

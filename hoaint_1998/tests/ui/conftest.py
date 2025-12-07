@@ -1,4 +1,4 @@
-from pages.Login.login_page import LoginPage
+from pages.HRM.Login.login_page import LoginPage
 import pytest
 from utils.json_loader import load_json_file
 import os
