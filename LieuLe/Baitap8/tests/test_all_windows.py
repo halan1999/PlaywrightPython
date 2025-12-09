@@ -2,7 +2,7 @@ from playwright.sync_api import expect
 
 def test_all_windows(login_page):
     login_page.open()
-    login_page._open_all_footer_tabs()
+    login_page._open_all_social_tabs()
 
     print("Tabs saved:", login_page.list_tabs())
     # → ['linkedin', 'facebook', 'twitter', 'youtube']

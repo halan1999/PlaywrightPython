@@ -35,31 +35,15 @@ class LoginPage:
         self._open_all_footer_tabs()
         self._process_click_here_window()
 
-    def _open_all_footer_tabs(self):
-        for name, info in self.footer_icons.items():
-            selector = info["selector"]
-            new_page = self._open_new_tab(selector)
-            self.opened_tabs[name] = new_page
-            new_page.bring_to_front()
-            self._verify_heading(new_page, info["expected"])
-            self.main_tab.bring_to_front()
-            print(f"↩ Trở lại tab Login sau khi xử lý: {name}") 
-
     def _open_all_social_tabs(self):
         for name, info in self.footer_icons.items():
-
             selector = info["selector"]
-
             new_page = self._open_new_tab(selector)
-
             self.opened_tabs[name] = new_page
-
             new_page.bring_to_front()
-
             self._verify_heading(new_page, info["expected"])
-
             self.main_tab.bring_to_front()
-            print(f"↩ Trở lại tab Login sau khi xử lý: {name}")
+            print(f"↩ Back to Login tab after verify heading in: {name}")
     
     def _open_new_tab(self, selector):
         with self.page.context.expect_page() as event:
