@@ -1,6 +1,6 @@
 import pytest
 
-from BT_BUOI12.pages.multitabs.window_page import WindowPage
+from BT_BUOI12.pages.multitabs.orangehrm_page import OrangePage
 from BT_BUOI12.pages.login.login_page import LoginPage
 from playwright.sync_api import Page
 
@@ -34,7 +34,7 @@ def logged_in_class(request, browser):
     context.close()
 
 @pytest.fixture
-def windows_page(page: Page) -> WindowPage:
-    wp = WindowPage(page)
+def windows_page(page: Page) ->OrangePage:
+    wp = OrangePage(page)
     wp.open_url()
     return wp

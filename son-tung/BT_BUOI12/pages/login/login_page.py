@@ -5,7 +5,7 @@ from BT_BUOI8.core.base_page import BasePage
 from playwright.sync_api import expect
 
 class LoginPage(BasePage):
-    URL = "https://hrm.anhtester.com/"
+    URL = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
     USERNAME_FIELD = "//input[@id='iusername']"
     PASSWORD_FIELD = "//input[@id='ipassword']"
     LOGIN_BUTTON = "//button[@type='submit']"
