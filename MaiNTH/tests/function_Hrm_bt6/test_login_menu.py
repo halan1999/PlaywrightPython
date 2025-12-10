@@ -1,6 +1,6 @@
 from playwright.sync_api import expect, Page
 import pytest
-from pages.login_hrm_page import LoginHrmPage
+from pages.login_page import LoginHrmPage
 from components.header_component import HeaderComponent
 
 @pytest.fixture(scope="function")

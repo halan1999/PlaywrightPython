@@ -1,19 +1,20 @@
 from playwright.sync_api import Page, expect, Locator, TimeoutError
+import time,json
 
 class BasePage:
     """Lớp cha chứa các hành động Playwright cơ bản, kế thừa cho mọi Page Object."""
 
-    def __init__(self, page: Page):
+    def __init__(self, page):
         self.page = page
 
-    def _visit(self, url: str):
-        """Điều hướng tới URL được chỉ định."""
-        print(f"[BasePage] Truy cập: {url}")
-        self.page.goto(url, wait_until="domcontentloaded")
+    def _open_url(self, url):
+        self.page.goto(url)
 
-    def _get_locator(self, locator: str) -> Locator:
-        """Trả về đối tượng Locator từ chuỗi selector."""
+    def _get_locator(self, locator: str):
+        print(f"[DEBUG] self.page type: {type(self.page)}")  # <--- thêm dòng này
+        print(f"[DEBUG] locator: {locator}")
         return self.page.locator(locator)
+
 
     def _click(self, locator: str, name: str = ""):
         """Thực hiện click với xử lý lỗi và ghi log."""
@@ -23,6 +24,7 @@ class BasePage:
         except TimeoutError:
             print(f"[Lỗi] Không thể click vào {locator}")
             raise
+
 
     def _fill(self, locator: str, text: str, name: str = ""):
         """Điền dữ liệu vào ô input."""
@@ -36,7 +38,7 @@ class BasePage:
 
     def _take_screenshot(self, filename: str):
         """Lưu ảnh chụp màn hình (sử dụng khi test fail)."""
-        path = f"screenshots/{filename}.png"
+        path = f"screenshots/{filename}_{int(time.time())}.png"
         self.page.screenshot(path=path)
         print(f"[SCREENSHOT] Lưu tại: {path}")
 
