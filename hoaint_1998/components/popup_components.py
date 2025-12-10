@@ -25,6 +25,12 @@ class PopupComponents(BasePage):
         self.page = page
 
     def _click_cancel_button_popup(self, popup_name: str = "edit"):
+        """
+        Docstring for _click_cancel_button_popup
+        
+        :param popup_name: popup edit -> edit; popup_delete -> delete
+        :type popup_name: str
+        """
         self._click(self.CANCEL_BUTTON(popup_name=popup_name))
         # xác định popup đã ẩn
         if popup_name == "edit":
@@ -33,6 +39,12 @@ class PopupComponents(BasePage):
             self._expect_to_be_hidden(self.EDIT_POPUP)
 
     def _click_submit_button_popup(self, popup_name: str = "edit"):
+        """
+        Docstring for _click_cancel_button_popup
+        
+        :param popup_name: popup edit -> edit; popup_delete -> delete
+        :type popup_name: str
+        """
         self._click(self.SUBMIT_BUTTON(popup_name=popup_name))
         # xác định popup đã ẩn
         if popup_name == "edit":

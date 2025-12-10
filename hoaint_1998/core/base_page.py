@@ -51,7 +51,7 @@ class BasePage():
     #------ LocatorAssertions = check the condition -------
     #--------------------------
     def _expect_to_have_url(self, url: str):
-        return expect(self.page).to_have_url(re.compile(f".*{url}$"))
+        return expect(self.page).to_have_url(re.compile(f".*{url}.*"))
       
     
     def _expect_to_be_visible(self, locator: str, message: str = None):

@@ -9,7 +9,7 @@ class MenuBarComponents(BasePage):
     MENU_TASKS_BUTTON = CommonLocators._normalize_space_xpath("span", "Tasks")
     MENU_PAYROLL_BUTTON = CommonLocators._normalize_space_xpath("span", "Payroll")
     MENU_REQUEST_BUTTON = CommonLocators._normalize_space_xpath("a", "Requests")
-    # submienu cua request
+    # sub menu cua request
     MENU_LEAVE_REQUEST_BUTTON = CommonLocators._normalize_space_xpath("a", "Leave Request")
     MENU_EXPENSE_CLAIM_BUTTON = CommonLocators._normalize_space_xpath("a", "Expense Claim")
     MENU_REQUEST_LOAN_BUTTON = CommonLocators._normalize_space_xpath("a", "Request Loan")
@@ -21,7 +21,7 @@ class MenuBarComponents(BasePage):
     MENU_EMPLOYEE_BUTTON = CommonLocators._normalize_space_xpath("span", "Employees")
     MENU_RECRUITMENT_ATS_BUTTON = CommonLocators._normalize_space_xpath("span", "Recruitment (ATS)")
     MENU_CORE_HR_BUTTON = CommonLocators._normalize_space_xpath("a", "Core HR")
-    # submienu cua Core HR
+    # sub menu cua Core HR
     MENU_DEPARTMENT_BUTTON = CommonLocators._normalize_space_xpath("a", "Department")
     MENU_DESIGNATION_BUTTON = CommonLocators._normalize_space_xpath("a", "Designation")
     MENU_POLICIES_BUTTON = CommonLocators._normalize_space_xpath("a", "Policies")
@@ -29,7 +29,7 @@ class MenuBarComponents(BasePage):
     MENU_ORGANIZATION_CHART_BUTTON = CommonLocators._normalize_space_xpath("a", "Organization Chart")
     MENU_FINANCE_BUTTON = CommonLocators._normalize_space_xpath("span", "Finance")
     MENU_PERFORMANCE_PMS_BUTTON = CommonLocators._normalize_space_xpath("a", "Performance (PMS)")
-    # submienu cua Performance (PMS)
+    # sub menu cua Performance (PMS)
     MENU_KPI_INDICATOR_BUTTON = CommonLocators._normalize_space_xpath("a", "KPI (Indicator)")
     MENU_KPA_APPRAISAL_BUTTON = CommonLocators._normalize_space_xpath("a", "KPA (Appraisal)")
     MENU_COMPETENCIES_BUTTON = CommonLocators._normalize_space_xpath("a", "Competencies")
@@ -37,7 +37,7 @@ class MenuBarComponents(BasePage):
     MENU_GOAL_TYPE_BUTTON = CommonLocators._normalize_space_xpath("a", "Goal Type")
     MENU_GOALS_CALENDAR_BUTTON = CommonLocators._normalize_space_xpath("a", "Goals Calendar")
     MENU_INVENTORY_CONTROL_BUTTON = CommonLocators._normalize_space_xpath("span", "Inventory Control")
-    # submienu cua Inventory Control
+    # sub menu cua Inventory Control
     MENU_WAREHOUSES_BUTTON = CommonLocators._normalize_space_xpath("a", "Warehouses")
     MENU_PRODUCT_BUTTON = "//a[@href='#!'][normalize-space()='Products']"
     MENU_SUPPLIERS_BUTTON = CommonLocators._normalize_space_xpath("a", "Suppliers")

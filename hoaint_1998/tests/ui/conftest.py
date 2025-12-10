@@ -1,4 +1,5 @@
 from pages.HRM.Login.login_page import LoginPage
+from pages.HRM.home.home_page import HomePage
 import pytest
 from utils.json_loader import load_json_file
 import os
@@ -20,3 +21,9 @@ def logined_page(login_page) -> LoginPage:
     login_page.login(valid_user["username"], valid_user["password"])
     login_page.verify_login_success()
     return login_page
+
+@pytest.fixture
+def home_page(page, logined_page) -> HomePage:
+    home = HomePage(page)
+    home._verify_home_page()
+    return home
