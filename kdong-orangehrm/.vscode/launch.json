@@ -9,11 +9,9 @@
             "module": "pytest",
             "args": [
                 "-s",
-                // "--headed",
                 "--browser", "chromium",
                 "${file}"
             ],
-            // "justMyCode": false,
             "console": "integratedTerminal"
         }
     ]

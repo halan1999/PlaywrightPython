@@ -15,19 +15,14 @@ def test_navigation_social_links(page:Page):
         xpath = item.value[0]
         expect_url = item.value[1]
 
-        print (f"{xpath} - {expect_url}")
-
         new_tab_page = login_page.open_social_link(item)
         social_page = SocialNetworkPage(new_tab_page)
         current_url = social_page._get_page_url()
 
         print(f"URL hiện tại: {current_url}, URL mong đợi: {expect_url}")
         assert expect_url in current_url, f"Lỗi: URL không khớp. Hiện tại: {current_url}, Mong đợi chứa: {expect_url}"
-    
         # Đóng tab mới để chuẩn bị cho lần lặp tiếp theo
         new_tab_page.close()
-
-
 
 def test_open_twitter_and_verify_page(page: Page, base_url):
     login_page = LoginPage(page)

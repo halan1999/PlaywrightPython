@@ -47,33 +47,6 @@ class LoginPage(BasePage):
     )
         
         return new_page
-    def click_social_link_and_verify(self, locator_tuple: tuple[str, str], expected_url_part: str):
-        """
-        Thực hiện hành động: 2. click lên social links --> trả về social_page: expected new tab mở ra 
-        
-        Args:
-            locator_tuple: Tuple chứa loại selector và giá trị.
-            expected_url_part: Phần URL mong đợi của trang mới.
-        """
-        selector_type, selector_value = locator_tuple
-        
-        # Sử dụng Playwright's "wait_for_event('popup')" để bắt tab mới
-        # và dùng 'with' để quản lý ngữ cảnh và tránh lỗi race condition.
-        with self.page.expect_popup() as popup_info:
-            # 2. Click lên social link
-            if selector_type == 'xpath':
-                self.page.locator(selector_value).click()
-            elif selector_type == 'css':
-                self.page.locator(selector_value).click()
-
-        # Lấy đối tượng Page mới (tab mới)
-        new_page = popup_info.value
-
-        # Verify Point: Kiểm tra tab mới đã mở ra và URL chính xác
-        print(f"    - Verify: New tab opened and URL contains '{expected_url_part}'")
-        expected_regex = re.compile(re.escape(expected_url_part))
-        expect(new_page).to_have_url(expected_regex)
-        return new_page
 
     def close_new_tab(self, new_page: Page):
         """
