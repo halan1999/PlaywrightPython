@@ -13,3 +13,4 @@ class TwitterOrange(BasePage):
     def _verify_twitter_orange_page(self):
         self._wait_for_element(self.X_ICON)
         self._wait_for_element(self.NAME_PAGE)
+        self._take_screenshot("twitter_page")
