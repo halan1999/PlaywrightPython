@@ -11,12 +11,15 @@ class HomePage(BasePage):
             "Tasks": "Tasks"
         }
 
-        self._profile_link = "//a[contains(@href,'my-profile')]//p"
+        self._welcome_text = f'//h6[text()="Welcome admin_example hello"]'
+
+        self._profile_link = '//a[contains(@href,"my-profile")]//p'
         self._left_menu = '//span[normalize-space()="%s"]'
         self._log_out_button = '//div[@class="page-header"]//a[normalize-space()="Logout"]'
 
-    def is_loaded(self):
-        expect(self.page.locator(self._profile_link)).to_be_visible(timeout=5000)
+    def is_homepage_loaded(self):
+        # expect(self.page.locator(self._profile_link)).to_be_visible(timeout=5000)
+        expect(self.page.locator(self._welcome_text)).to_be_visible(timeout=5000)
         return True
     
     def is_project_menu_visible(self) -> bool:

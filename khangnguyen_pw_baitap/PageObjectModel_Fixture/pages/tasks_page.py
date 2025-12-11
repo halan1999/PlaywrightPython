@@ -95,4 +95,3 @@ class TasksPage():
         element.click()
 
         return self
-
