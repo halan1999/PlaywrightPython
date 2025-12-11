@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Pytest-Playwright ORANGE-HRM",
+            "type": "debugpy",
+            
+            "request": "launch",
+            "module": "pytest",
+            "args": [
+                "-s",
+                // "--headed",
+                "--browser", "chromium",
+                "${file}"
+            ],
+            // "justMyCode": false,
+            "console": "integratedTerminal"
+        }
+    ]
+}
