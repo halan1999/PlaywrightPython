@@ -1,18 +1,19 @@
-from playwright.sync_api import Page,expect
-from pages.login_page import LoginPage
+from playwright.sync_api import Page
 from pages.social_network_page import SocialNetworkPage
 from config.social_network_links_enum import SocialNetworkLinks
 from pages.twitter_orange_page import TwitterOrangePage
+from pages.login_page import LoginPage
 
-BASE_URL = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
+BASE_URL = "https://opensource-demo.orangehrmlive.com/web/index.php/"
+LOGIN_URL = f"{BASE_URL}auth/login"
 
-def test_navigation_social_links(page:Page):
+def test_2a_navigation_social_links(page:Page):
+
     login_page = LoginPage(page)
 
-    login_page.go_to_page(BASE_URL)
+    login_page.go_to_page(LOGIN_URL)
 
     for item in SocialNetworkLinks:
-        xpath = item.value[0]
         expect_url = item.value[1]
 
         new_tab_page = login_page.open_social_link(item)
@@ -24,11 +25,12 @@ def test_navigation_social_links(page:Page):
         # Đóng tab mới để chuẩn bị cho lần lặp tiếp theo
         new_tab_page.close()
 
-def test_open_twitter_and_verify_page(page: Page, base_url):
+def test_2b_open_twitter_and_verify_page(page: Page):
     login_page = LoginPage(page)
-    login_page.go_to_page(BASE_URL)
+    login_page.go_to_page(LOGIN_URL)
     
     new_tab_page = login_page.open_social_link(SocialNetworkLinks.TWITTER)
     
     twitter_page = TwitterOrangePage(new_tab_page)
     twitter_page.verify_twitter_orange_page()
+
