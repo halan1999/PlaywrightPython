@@ -19,4 +19,7 @@ class HRM_DashboardPage(BasePage):
     def logout(self):
         self.header_component.logout()  
         self.page.wait_for_url("**/auth/login")
-        self._take_screenshot("after_logout")
+        self.page.wait_for_load_state()
+        
+        
+        

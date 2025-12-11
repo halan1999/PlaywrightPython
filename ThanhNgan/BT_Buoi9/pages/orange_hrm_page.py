@@ -21,7 +21,7 @@ class OrangeHrmPage(BasePage):
 
     def goto(self):
         self._goto(self.URL)
-        self._take_screenshot("hrm_login_page")
+        self._take_screenshot("1.goto_hrm_login_page")
         
     def load_credentials(self,type:str):
         with open(file = r'./BT_Buoi9/data/credentials.json', mode="r",encoding="utf-8") as file:
@@ -35,15 +35,11 @@ class OrangeHrmPage(BasePage):
         self._click(self.LOGIN_BUTTON)
         
         self.page.wait_for_url("**/dashboard/index", timeout=10000)
-        self.page.wait_for_load_state("load")
-        self._take_screenshot("after_login")
+        # self._take_screenshot("after_login")
         return HRM_DashboardPage(self.page)
 
-    def open_social_tab(self, icon_name: str):
-        with self.page.context.expect_page() as new_page_info:
-            self._click(self.SOCIAL_ICONS[icon_name]) 
-        new_page = new_page_info.value
-        new_page.wait_for_load_state()
-        if icon_name == "TWITTER_ICON":
-            return Orange_TwitterPage(new_page)     
+    def open_twitter_tab(self):
+        new_page = self._click_to_open_new_tab(self.SOCIAL_ICONS["TWITTER_ICON"])
+        twitter_page = Orange_TwitterPage(new_page)
+        return twitter_page     
         

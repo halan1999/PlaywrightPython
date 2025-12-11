@@ -6,21 +6,22 @@ import time
 
 def test_open_twitter_tab_successfully_then_login(orangePage):
     # Click icon Twitter to open new tab
-    twitter_page = orangePage.open_social_tab("TWITTER_ICON")
-    twitter_page._take_screenshot("orange_twitter_page")
-
-    time.sleep(4)
-    # Verify title 
-    title = twitter_page.get_title_text()
-    assert title == "OrangeHRM (@orangehrm) / X"
+    twitter_page = orangePage.open_twitter_tab()
     
-    time.sleep(2) 
+    # Verify title & icon
+    assert twitter_page._get_url() == twitter_page.URL
+    twitter_page.expect_icon_visible()
+    assert twitter_page.get_text_under_avatar() == "OrangeHRM"
+    twitter_page._take_screenshot("2.open_orange_twitter_page")
+
+    # time.sleep(2) 
     # Back to Orange HRM page
     orangePage._back_to_main_page()
-    orangePage._take_screenshot("back_to_orange_hrm_page")
+    orangePage._take_screenshot("3.back_to_orange_hrm_page")
 
     # Login with valid credentials
     dashboard_page = orangePage.login_with_valid_credentials()
+    dashboard_page._take_screenshot("4.after_login_orange_hrm_page")
     print("Login successfully")
 
     # Verify title dashboard page
@@ -29,4 +30,5 @@ def test_open_twitter_tab_successfully_then_login(orangePage):
 
     # Logout
     dashboard_page.logout()
+    dashboard_page._take_screenshot("5.after_logout")
     print("Logout successfully")

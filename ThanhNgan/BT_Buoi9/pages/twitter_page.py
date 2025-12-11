@@ -14,3 +14,10 @@ class Orange_TwitterPage(BasePage):
 
     def get_title_text(self) -> str:
         return self.page.title()
+    
+    def expect_icon_visible(self):
+        self._expect_to_be_visible(self.ICON)
+    
+    def get_text_under_avatar(self) -> str:
+        return self._get_text(self.TEXT_UNDER_AVATAR)   
+    

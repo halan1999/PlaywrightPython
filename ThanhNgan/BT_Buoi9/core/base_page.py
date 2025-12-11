@@ -11,6 +11,17 @@ class BasePage:
     def _get_locator(self, locator: str):
         return self.page.locator(locator)
     
+    def _get_url(self) -> str:
+        return self.page.url
+
+    def _expect_to_be_visible(self, locator:str):
+        try:
+            expect(self.page.locator(locator)).to_be_visible(timeout=5000)
+        except TimeoutError:
+            print(f"Lỗi Element {locator} không hiển thị")
+            self._take_screenshot(f"error_locator_visible_{locator}.png")
+            raise
+
     def _get_text(self, locator: str) -> str:
         return self.page.locator(locator).inner_text()
         
@@ -38,6 +49,13 @@ class BasePage:
         path = f"./BT_Buoi9/screenshots/{filename}_{datetime.now().date()}.png"
         self.page.screenshot(path=path)
         print(f"[SCREENSHOT] Lưu tại: {path}")
+
+    def _click_to_open_new_tab(self,locator):
+        with self.page.context.expect_page(timeout=5000) as new_page_info:
+            self._click(locator) 
+        new_page = new_page_info.value
+        new_page.wait_for_load_state()
+        return new_page
 
     def _back_to_main_page(self):
         self.page.bring_to_front()
