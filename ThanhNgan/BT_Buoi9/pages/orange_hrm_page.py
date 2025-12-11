@@ -21,6 +21,7 @@ class OrangeHrmPage(BasePage):
 
     def goto(self):
         self._goto(self.URL)
+        self.page.wait_for_load_state(state="networkidle")
         self._take_screenshot("1.goto_hrm_login_page")
         
     def load_credentials(self,type:str):
@@ -35,6 +36,7 @@ class OrangeHrmPage(BasePage):
         self._click(self.LOGIN_BUTTON)
         
         self.page.wait_for_url("**/dashboard/index", timeout=10000)
+        self.page.wait_for_load_state("networkidle")
         # self._take_screenshot("after_login")
         return HRM_DashboardPage(self.page)
 

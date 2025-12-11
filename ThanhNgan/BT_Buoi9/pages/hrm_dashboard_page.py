@@ -19,7 +19,7 @@ class HRM_DashboardPage(BasePage):
     def logout(self):
         self.header_component.logout()  
         self.page.wait_for_url("**/auth/login")
-        self.page.wait_for_load_state()
+        self.page.wait_for_load_state(state="networkidle")
         
         
         

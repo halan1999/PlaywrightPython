@@ -51,7 +51,7 @@ class BasePage:
         print(f"[SCREENSHOT] Lưu tại: {path}")
 
     def _click_to_open_new_tab(self,locator):
-        with self.page.context.expect_page(timeout=5000) as new_page_info:
+        with self.page.context.expect_page(timeout=30000) as new_page_info:
             self._click(locator) 
         new_page = new_page_info.value
         new_page.wait_for_load_state()
