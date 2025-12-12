@@ -1,7 +1,8 @@
 from playwright.sync_api import Page,expect
 from pages.login_page import LoginPage
-from config.social_network_links_enum import SocialNetworkLinks
+from enums.social_network_links_enum import SocialNetworkLinks
 from pages.twitter_orange_page import TwitterOrangePage
+from core.base_page import BasePage
 
 BASE_URL = "https://opensource-demo.orangehrmlive.com/web/index.php/"
 LOGIN_URL = f"{BASE_URL}auth/login"
@@ -22,7 +23,19 @@ def test_3_back_from_twitter_then_login_successfully_and_logout(page: Page):
 
     home_page = login_page.login(username,password)
     expect(page).to_have_url(dashboard_url)
+    
+    path = "screenshots/"
+    name = f"test_9_dashboard"
+    base_page = BasePage(new_tab_page)
+    base_page.take_screenshot(path,name)
 
-    home_page.logout()
+    # home_page.logout()
+    home_page.header.logout()
     login_url = f"{BASE_URL}auth/login"
     expect(page).to_have_url(login_url)
+
+    path = "screenshots/"
+    name = f"test_9_login"
+    base_page = BasePage(new_tab_page)
+    base_page.take_screenshot(path,name)
+

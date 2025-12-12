@@ -10,7 +10,7 @@ def browser():
     with sync_playwright() as p:
         # Setup: Khởi tạo trình duyệt Chromium (có thể thay bằng 'firefox' hoặc 'webkit')
         print("\n[SETUP] Khởi tạo Browser...")
-        browser = p.chromium.launch(headless=False) # Dùng headless=False để xem giao diện
+        browser = p.chromium.launch(headless=True) # Dùng headless=False để xem giao diện
         yield browser # Trả về browser object cho các fixture khác
 
         # Teardown: Đóng trình duyệt sau khi tất cả test case hoàn thành

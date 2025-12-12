@@ -1,4 +1,6 @@
 from playwright.sync_api import Page, expect, Locator, TimeoutError
+from config.config_manager import SCREENSHOT_ON
+import os
 
 class BasePage:
     """Lớp cha chứa các hành động Playwright cơ bản, kế thừa cho mọi Page Object."""
@@ -45,3 +47,32 @@ class BasePage:
     
     def _wait_for_element(self,locator:str,timeout:int=15000):
         self.wait_for_element(locator=locator,timeout=timeout)
+
+    def take_screenshot(self, path: str = 'screenshots', name: str = 'screenshot', full_page: bool = True):
+        """
+        Thực hiện chụp ảnh màn hình nếu biến SCREENSHOT_ON là True.
+
+        Args:
+            path (str): Thư mục lưu screenshot. Mặc định là 'screenshots'.
+            name (str): Tên file screenshot (không bao gồm phần mở rộng).
+            full_page (bool): Chụp toàn bộ trang hay chỉ viewport. Mặc định là True.
+        """
+        # --- Kiểm tra Biến Global ---
+        if not SCREENSHOT_ON:
+            print("🛑 Screenshot disabled by configuration.")
+            return
+
+        # Tạo thư mục nếu chưa tồn tại
+        os.makedirs(path, exist_ok=True)
+
+        # Định dạng tên file với đuôi .png
+        file_name = f"{name}.png"
+        full_path = os.path.join(path, file_name)
+
+        try:
+            # Gọi hàm chụp screenshot của Playwright
+            self.page.screenshot(path=full_path, full_page=full_page)
+            print(f"📸 Screenshot saved to: {full_path}")
+
+        except Exception as e:
+            print(f"❌ Error taking screenshot: {e}")

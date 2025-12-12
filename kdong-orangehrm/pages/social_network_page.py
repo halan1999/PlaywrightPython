@@ -1,6 +1,5 @@
 from core.base_page import BasePage
 from playwright.sync_api import expect,Page, Locator
-from pages.new_social_page import NewSocialPage
 
 class SocialNetworkPage(BasePage):
     # Social Media Locators

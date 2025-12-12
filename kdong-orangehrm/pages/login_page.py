@@ -1,8 +1,7 @@
 from playwright.sync_api import Page,expect
 import re
 from core.base_page import BasePage
-from config.social_network_links_enum import SocialNetworkLinks
-
+from enums.social_network_links_enum import SocialNetworkLinks
 class LoginPage(BasePage):
     PAGE_TITLE_EXPECTED = "OrangeHRM"
 
@@ -54,6 +53,7 @@ class LoginPage(BasePage):
         
         try:
             self.page.locator(self.DASHBOARD_LABEL).is_visible()
+            # from pages.home_page import HomePage
             from pages.home_page import HomePage
             return HomePage(self.page)
         except TimeoutError:
