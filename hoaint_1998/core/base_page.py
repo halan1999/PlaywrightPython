@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page, expect, Locator
 from typing import Self
 import re
 from pathlib import Path
@@ -8,7 +8,7 @@ class BasePage():
         self.page = page
 
     #--------------------------
-    #------ BASIC ACTION -------
+    #region BASIC ACTION -------
     #--------------------------
 
     def _get_locator(self, locator: str):
@@ -18,19 +18,38 @@ class BasePage():
         return self.page.goto(url, wait_until="domcontentloaded")
         
     
-    def _click(self, locator: str):
-        return self.page.locator(locator).click()
+    def _click(self, locator: str | Locator):
+        loc : Locator = locator if isinstance(locator, Locator) else self._get_locator(locator)
+        loc.click()
         
     
     def _dbclick(self, locator: str):
         return self.page.locator(locator).dblclick()
     
-    def _fill(self, locator: str, value: str):
-        return self.page.locator(locator).fill(value)
+    def _fill(self, locator: str | Locator, value: str):
+        loc : Locator = locator if isinstance(locator, Locator) else self._get_locator(locator)
+        loc.fill(value)
+        # return self.page.locator(locator).fill(value)
     
     def _inner_text(self, locator: str):
+        """
+        Lấy giá trị text hiển thị trên màn hình của locator
+        """
         return self._get_locator(locator).inner_text().strip()
     
+    def _select_option(self, locator: str, value=None):
+        selector = self._get_locator(locator)
+
+        if isinstance(value, list):
+            selector.select_option(value)
+            return
+        selector.select_option(value)
+    
+    # endregion
+    
+    #--------------------------
+    # region Page
+    #--------------------------
     def _bring_to_font(self):
         """
         trở về trang mà mình muốn
@@ -47,8 +66,10 @@ class BasePage():
         new_page.wait_for_load_state("domcontentloaded")
         return new_page
     
+    # endregion
+    
     #--------------------------
-    #------ LocatorAssertions = check the condition -------
+    # region LocatorAssertions = check the condition
     #--------------------------
     def _expect_to_have_url(self, url: str):
         return expect(self.page).to_have_url(re.compile(f".*{url}.*"))
@@ -92,14 +113,14 @@ class BasePage():
             expect(self._get_locator(locator)).to_be_enabled()
         except Exception:
             raise AssertionError(message or f"{locator} is not enabled")
-        
-    
+    # endregion    
     #--------------------------
-    #------ WAIT -------
+    # region Wait
     #--------------------------
     def _wait_for_element(self, locator: str, timeout: int = 30000):
         return self.page.locator(locator).wait_for(state="visible", timeout=timeout)
         
+    # endregion
     
     #--------------------------
     #------ TAKE A SCREENSHOT -------

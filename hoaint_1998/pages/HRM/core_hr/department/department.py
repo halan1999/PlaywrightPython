@@ -29,13 +29,7 @@ class Department(BasePage):
         self.popup._click_submit_button_popup()
 
     def _delete_department(self, record: str, confirm: bool=True):
-        self.table._search_with_result(record)
-        self.table._click_delete_icon(record)
-        self.popup._confirm_delete_record(confirm=confirm)
-        if confirm:
-            self.table._search_with_no_result(record)
-        else:
-            self.table._search_with_result(record)
+        self.table._delete_record(record, confirm)
     
     def _enter_department_name(self, value: str = None):
         self.last_record_name = value or _get_random_test()
@@ -48,4 +42,15 @@ class Department(BasePage):
         self.last_record_name = value or _get_random_test()
         self._fill(DL.NAME_INPUT_EDIT_POPUP, self.last_record_name)
 
+    def _select_row_per_page(self, table_length: str):
+        """
+        table_length: gồm giá trị mặc định là 10 25 50 100
+        """
+        self.table._select_row_per_page(table_length=table_length)
+
+    def _click_button_in_pagination_controls(self, name_button):
+        """
+        Format: Previous 1 2 3 ... 6 7 Next
+        """
+        self.table._click_button_in_pagination_controls(name_button)
     
