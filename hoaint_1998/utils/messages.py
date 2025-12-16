@@ -5,3 +5,10 @@ ERROR_MESSAGE = {
         "REQUIRED_USERNAME_PASSWORD": "field is required"
     }
 }
+SUCCESS_MESSAGE = {
+    "COMMON": {
+        "CREATE_SUCCESS": "added",
+        "UPDATE_SUCCESS": "updated",
+        "DELETE_SUCCESS": "deleted"
+    }
+}
