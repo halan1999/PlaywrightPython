@@ -4,7 +4,7 @@ from playwright.sync_api import expect
 from components.login_component import LoginComponent
 from utils.config import LOGIN_URL, DESK_URL
 
-CREDENTIAL_PATH = "Baitap7/data/login_acc.json"
+CREDENTIAL_PATH = "data/login_acc.json"
 class LoginPage(BasePage):
     LOGIN_URL = LOGIN_URL
     DASHBOARD_URL = DESK_URL
