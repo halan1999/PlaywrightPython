@@ -16,14 +16,14 @@ class BasePage:
         locator.fill(input_data)
 
     def _select2(self, xpath_dropdown : str, item_choose : str):
-        # Click mở dropdown list 
+        # Click to open dropdownlist
         self._click(xpath_dropdown)
 
-        # Xác định dropdownlist đã được mở
+        # Verify list item visible
         xpath_dropdown_menu = '//ul[contains(@class,"dropdown-menu")]'
         expect(self.page.locator(xpath_dropdown_menu)).to_be_visible()
 
-        # Chọn item mong muốn
+        # Choose expected item
         xpath_item = f'//li[normalize-space()="{item_choose}"]'
         self._click(xpath_item)
 
