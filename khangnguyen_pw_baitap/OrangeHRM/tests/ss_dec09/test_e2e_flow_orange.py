@@ -23,6 +23,7 @@ def test_orangehrm_e2e_flow(page):
     # Verify X page of OrangeHRM
     x_page = XPage(x_tab)
     x_page.is_x_page_orangehrm_loaded()
+    x_page.take_screenshot("screenshots/x_page.png")
 
     # Back to login page in the first tab
     login_page.bring_to_front()
@@ -33,3 +34,4 @@ def test_orangehrm_e2e_flow(page):
     # Verify dashboard page is loaded (after login)
     dashboard_page = DashboardPage(page)
     dashboard_page.is_dashboard_page_loaded()
+    dashboard_page.take_screenshot("screenshots/dashboard_page.png")
