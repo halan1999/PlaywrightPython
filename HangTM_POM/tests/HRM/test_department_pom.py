@@ -1,8 +1,8 @@
 from pages.HRM.login_page import LoginPage
 from pages.HRM.department_page import DepartmentPage
 
-def test_add_department_pom(hrm_logged_in):
-    page=hrm_logged_in
+def test_add_department_pom(hrm_logged_in_page):
+    page=hrm_logged_in_page
     Department_page=DepartmentPage(page)
     Department_page.open_department_page()
 #add:

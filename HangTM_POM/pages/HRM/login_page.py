@@ -3,11 +3,12 @@ from Core.Base_page  import BasePage
 #from pages.dashboard_page import DashboardPage
 class LoginPage(BasePage):
     URL="https://hrm.anhtester.com/erp/login"
+    username_input="input[name='iusername']"
+    password_input="input[name='password']"
+    login_button="form#erp-form button[type='submit']"
     def __init__(self, page:Page):
         super().__init__(page)
-        self.username_input="input[name='iusername']"
-        self.password_input="input[name='password']"
-        self.login_button="form#erp-form button[type='submit']"
+       
     def open(self) -> None:
         self.goto(self.URL)
 
