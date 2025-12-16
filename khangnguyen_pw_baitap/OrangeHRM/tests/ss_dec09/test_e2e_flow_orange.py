@@ -1,7 +1,6 @@
 from playwright.sync_api import expect
 from utils.read_json import read_json
 from pages.login_page import LoginPage
-from pages.x_page import XPage
 from pages.dashboard_page import DashboardPage
 
 
@@ -15,14 +14,9 @@ def test_orangehrm_e2e_flow(page):
     login_page = LoginPage(page, login_url)
     login_page.open()
 
-    # Declare another tab for X page
-    with page.context.expect_page() as new_page_info:
-        login_page.click_twitter_icon()
-    x_tab = new_page_info.value
-
     # Verify X page of OrangeHRM
-    x_page = XPage(x_tab)
-    x_page.is_x_page_orangehrm_loaded()
+    x_page = login_page.open_x_page()
+    x_page.is_x_page_orangehrm_loaded_with_X_logo_and_merchant_name_visible()
     x_page.take_screenshot("screenshots/x_page.png")
 
     # Back to login page in the first tab
