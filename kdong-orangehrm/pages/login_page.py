@@ -1,7 +1,8 @@
-from playwright.sync_api import Page,expect
+from playwright.sync_api import expect
 import re
 from core.base_page import BasePage
 from enums.social_network_links_enum import SocialNetworkLinks
+from pages.social_network_page import SocialNetworkPage
 class LoginPage(BasePage):
     PAGE_TITLE_EXPECTED = "OrangeHRM"
 
@@ -19,7 +20,7 @@ class LoginPage(BasePage):
         expect(self.page).to_have_title(self.PAGE_TITLE_EXPECTED)
         print(f"Đã truy cập thành công: {url}")
 
-    def open_social_link(self, social_link_type: SocialNetworkLinks) -> Page:
+    def open_social_link(self, social_link_type: SocialNetworkLinks) -> SocialNetworkPage:
         """
         Mở liên kết mạng xã hội bằng cách sử dụng đối tượng Enum đã được đóng gói.
         
@@ -43,7 +44,7 @@ class LoginPage(BasePage):
             timeout=5000 
         )
 
-        return new_page
+        return SocialNetworkPage(new_page)
     
     def login(self, username:str, password:str):
         """Thực hiện nghiệp vụ đăng nhập."""

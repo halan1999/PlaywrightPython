@@ -1,5 +1,6 @@
 import pytest
 from playwright.sync_api import sync_playwright
+from pages.login_page import LoginPage
 
 @pytest.fixture(scope="session")
 def browser():
@@ -10,7 +11,7 @@ def browser():
     with sync_playwright() as p:
         # Setup: Khởi tạo trình duyệt Chromium (có thể thay bằng 'firefox' hoặc 'webkit')
         print("\n[SETUP] Khởi tạo Browser...")
-        browser = p.chromium.launch(headless=True) # Dùng headless=False để xem giao diện
+        browser = p.chromium.launch(headless=False) # Dùng headless=False để xem giao diện
         yield browser # Trả về browser object cho các fixture khác
 
         # Teardown: Đóng trình duyệt sau khi tất cả test case hoàn thành
@@ -33,3 +34,11 @@ def page(browser):
     print("\n  [TEARDOWN] Đóng Page và Context...")
     page.close()
     context.close()
+
+@pytest.fixture(scope="function")
+def login_page(page):
+    """
+    Fixture tự động khởi tạo LoginPage cho mỗi test case.
+    Giúp code ở file test cực kỳ ngắn gọn.
+    """
+    return LoginPage(page)

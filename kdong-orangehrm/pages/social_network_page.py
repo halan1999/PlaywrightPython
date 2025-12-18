@@ -1,5 +1,6 @@
 from core.base_page import BasePage
-from playwright.sync_api import expect,Page, Locator
+from playwright.sync_api import Page
+
 
 class SocialNetworkPage(BasePage):
     # Social Media Locators
@@ -11,13 +12,12 @@ class SocialNetworkPage(BasePage):
 
     def __init__(self, page: Page):
         super().__init__(page)
-    
-    def get_heading_text(self, heading) -> str:
-        return self._get_text(f"//h1[contains(normalize-space(), '{heading}')]")
 
-    def verify_element(self):
-        expect(self.page.locator(self.icon_twitter)).to_be_visible()
-
-    
-    
+    def verify_navigation_success(self, expected_url: str):
+        try:
+            self.verify_url_contains(expected_url)
+            return self.page.url
+        except Exception as e:
+            print(f"❌ Không thể điều hướng đến {expected_url}: {e}")
+            return self.page.url
     

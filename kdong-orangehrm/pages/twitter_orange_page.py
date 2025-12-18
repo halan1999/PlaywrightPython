@@ -6,7 +6,6 @@ class TwitterOrangePage(BasePage):
 
     def __init__(self, page):
         super().__init__(page)
-        # self.page = page
 
     def verify_twitter_orange_page(self):
         # verify x icon bên góc trái
