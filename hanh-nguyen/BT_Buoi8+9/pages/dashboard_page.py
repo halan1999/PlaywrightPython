@@ -6,8 +6,8 @@ class DashboardPage(BasePage):
     USER_MENU = "//span[@class='oxd-userdropdown-tab']"
     LOGOUT = "//a[text()='Logout']"
 
-    def verify_dashboard_displayed(self):
-        self._assert_locator_visible(self.DASHBOARD_HEADER)
+    def assert_dashboard_visible(self):
+        self._assert_text_visible(self.DASHBOARD_HEADER)
 
     def logout(self):
         self._click(self.USER_MENU)

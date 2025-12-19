@@ -1,6 +1,5 @@
-from playwright.sync_api import Page
+from playwright.sync_api import Page, expect
 from core.base_page import BasePage
-import expect
 
 class LoginPage(BasePage):
     URL = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
