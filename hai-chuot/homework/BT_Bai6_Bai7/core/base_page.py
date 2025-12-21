@@ -1,3 +1,4 @@
+import allure
 from playwright.sync_api import Page
 
 class BasePage:
@@ -15,7 +16,8 @@ class BasePage:
         locator = self.page.locator(xpath)
         locator.fill(input_data)
 
-    def _take_screenshot(self, filename: str):
+    def _take_screenshot(self, filename: str, name : str):
         path = f"screenshots/{filename}"
-        self.page.screenshot(path=path)
+        image = self.page.screenshot(path = path, full_page = True)
+        allure.attach(image, name = name, attachment_type = allure.attachment_type.PNG)        
         print(f"[SCREENSHOT] Lưu tại: {path}")
