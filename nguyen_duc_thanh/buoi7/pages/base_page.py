@@ -1,5 +1,6 @@
 import json
 import os
+import allure
 from playwright.sync_api import Page
 
 class BasePage:
@@ -22,11 +23,13 @@ class BasePage:
             print(f"Cannot click in {locator}")
             raise
     
-    def take_screenshot(self, filename: str):
-        path = f"buoi7/screenshots/{filename}.png"
-        self.page.screenshot(path=path)
-        print(f"[SCREENSHOT] Lưu tại: {path}")
 
+    def take_screenshot(self, filename: str, name: str):
+        path = f"buoi7/hrm/screenshots/{filename}.png"
+        png = self.page.screenshot(full_page=True)
+        allure.attach(png, name= name, attachment_type=allure.attachment_type.PNG)
+        print(f"[SCREENSHOT] Lưu tại: {path}")
+        
     def get_credential(self):
         current_dir = os.path.dirname(os.path.abspath(__file__))
         file_path = os.path.join(current_dir, "../data/credentials.json")
