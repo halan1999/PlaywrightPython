@@ -14,9 +14,9 @@ class BasePage:
     def get_text(self, locator):
         return self.page.locator(locator).inner_text()
 
-    def take_screenshot(self, file_path):
+    def take_screenshot(self, file_path): 
         self.page.screenshot(path=file_path)
-
+ 
     def is_visible(self, locator):
         return self.page.locator(locator).is_visible()
 

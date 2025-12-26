@@ -117,3 +117,10 @@ test-results/
 # Ignore JSON test data if needed:
 *.json
 data/
+
+# Allure
+allure-results/
+allure-report/
+test-results/
+playwright-report/
+*.zip
