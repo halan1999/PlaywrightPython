@@ -6,15 +6,6 @@ import json
 from pathlib import Path
 
 def test_logout_functionality(page):
-    ## Get valid credentials from JSON file
-    path = Path("resources/login_credentials.json")
-    with path.open("r", encoding="utf-8") as file:
-        credentials = json.load(file)
-
-    valid_user = credentials["valid"]
-    username = valid_user["username"]
-    password = valid_user["password"]
-
     login_page = LoginPage(page)
     home_page = HomePage(page)
     header = HeaderComponent(page)
@@ -24,7 +15,7 @@ def test_logout_functionality(page):
     login_page.take_screenshot("login_page.png")
 
     # Login
-    login_page.login(username, password)
+    login_page.login_valid()
 
     # Expected: Home page is loaded
     assert home_page.is_loaded()

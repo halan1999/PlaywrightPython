@@ -111,6 +111,9 @@ log/
 screenshots/
 videos/
 
+# Local contributor guide:
+AGENTS.md
+
 # If using pytest-playwright attachments:
 test-results/
 

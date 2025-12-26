@@ -9,10 +9,10 @@ def browser_context_args():
 
 @pytest.fixture(scope="function")
 def logged_in_page(page):
-
-
     login = LoginPage(page)
     login.open()
     login.login_valid()
     assert login.is_logged_in()
     return page
+
+    
