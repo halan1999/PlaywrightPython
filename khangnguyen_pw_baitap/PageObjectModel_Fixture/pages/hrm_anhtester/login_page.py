@@ -1,32 +1,44 @@
 from playwright.sync_api import Page, expect
 from pages.base_page import BasePage
-import re, json
+import json
 from pathlib import Path
+
 
 class LoginPage(BasePage):
     url = "https://hrm.anhtester.com/erp/login"
 
-    _cred_path = Path(__file__).resolve().parent.parent / "resources" / "login_credentials.json"
+    # Locators
+    _username_field = '//input[@id="iusername" and @name="iusername"]'
+    _password_field = '//input[@id="ipassword" and @name="password"]'
+    _login_button = '//button[@type="submit"]'
+
+    _cred_path = (
+        Path(__file__).resolve().parents[2]
+        / "resources"
+        / "hrm_anhtester"
+        / "login_credentials.json"
+    )
+
     with open(_cred_path, "r", encoding="utf-8") as f:
         _creds = json.load(f)
 
-    username_valid = _creds['valid']['username']
-    password_valid = _creds['valid']['password']
-    username_invalid = _creds['invalid']['username']
-    password_invalid = _creds['invalid']['password']
+    username_valid = _creds["valid"]["username"]
+    password_valid = _creds["valid"]["password"]
+    username_invalid = _creds["invalid"]["username"]
+    password_invalid = _creds["invalid"]["password"]
 
     def __init__(self, page: Page):
         super().__init__(page)
-        self._username = page.locator('#iusername')
-        self._password = page.locator('#ipassword')
-        self._login_btn = page.locator('button[type="submit"]')
+        self._username = page.locator(self._username_field)
+        self._password = page.locator(self._password_field)
+        self._login_btn = page.locator(self._login_button)
         self._toast_invalid = page.locator('//div[text()="Invalid Login Credentials."]')
         self._my_profile = page.locator('//a[contains(@href,"my-profile")]//p')
 
     def open(self):
-        self.page.goto(self.url)
+        self.page.goto(self.url, wait_until="domcontentloaded", timeout=60000)
 
-    def is_loaded(self):
+    def is_login_page_loaded(self):
         expect(self._username).to_be_visible(timeout=5000)
         expect(self._password).to_be_visible(timeout=5000)
 

@@ -1,3 +1,4 @@
+import shutil
 import json
 import pytest
 from pathlib import Path
@@ -27,3 +28,16 @@ def credentials():
 
     with open(CREDENTIALS_FILE, encoding="utf-8") as f:
         return json.load(f)["users"]
+
+@pytest.fixture(scope="session", autouse=True)
+def clean_allure_folders():
+    results_dir = ROOT_DIR / "allure-results"
+    report_dir = ROOT_DIR / "allure-report"
+
+    # remove folders if exist
+    for folder in [results_dir, report_dir]:
+        if folder.exists():
+            shutil.rmtree(folder)
+
+    # recreate allure-results so pytest can write into it
+    results_dir.mkdir(parents=True, exist_ok=True)

@@ -4,10 +4,10 @@ from pages.base_page import BasePage
 
 class LoginPage(BasePage):
     # Locators
-    USERNAME_INPUT = '//input[@id="user-name"]'
-    PASSWORD_INPUT = '//input[@id="password"]'
-    LOGIN_BUTTON = '//input[@id="login-button"]'
-    LOCKED_OUT_ERROR = '//h3[normalize-space()="Epic sadface: Sorry, this user has been locked out."]'
+    _username_input = '//input[@id="user-name"]'
+    _password_input = '//input[@id="password"]'
+    _login_button = '//input[@id="login-button"]'
+    _locked_out_error = '//h3[normalize-space()="Epic sadface: Sorry, this user has been locked out."]'
 
     URL = "https://www.saucedemo.com/"
 
@@ -18,9 +18,9 @@ class LoginPage(BasePage):
         self.page.goto(self.URL)
 
     def login(self, username: str, password: str):
-        self.page.fill(self.USERNAME_INPUT, username)
-        self.page.fill(self.PASSWORD_INPUT, password)
-        self.page.click(self.LOGIN_BUTTON)
+        self.page.fill(self._username_input, username)
+        self.page.fill(self._password_input, password)
+        self.page.click(self._login_button)
 
     def is_login_failed(self) -> bool:
-        return self.page.locator(self.LOCKED_OUT_ERROR).is_visible()
+        return self.page.locator(self._locked_out_error).is_visible()
