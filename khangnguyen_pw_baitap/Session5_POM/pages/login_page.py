@@ -4,14 +4,13 @@ import re, json
 from pathlib import Path
 
 class LoginPage(BasePage):
-    test_url = "https://hrm.anhtester.com/erp/login"
+    base_url = "https://hrm.anhtester.com/erp/login"
 
     # Get credentials from JSON file
     _cred_path = Path(__file__).resolve().parent.parent / "resources" / "login_credentials.json"
     with open(_cred_path, "r", encoding="utf-8") as f:
         _creds = json.load(f)
 
-    # mặc định dùng từ JSON
     username_valid  = _creds["valid"]["username"]
     password_valid  = _creds["valid"]["password"]
     username_invalid = _creds["invalid"]["username"]
