@@ -1,31 +1,28 @@
-from pathlib import Path
-import json
 from playwright.sync_api import Page, Locator, expect
 
 
 class ProjectsPage():
+    _menu_projects = '//a[contains(@href,"projects-list")]'
+    _add_new_btn = '//a[@href="#add_form" and contains(normalize-space(.),"Add New")]'
+
+    _title_field = '//input[@name="title" and @type="text"]'
+    _client_select = '//select[@id="client_id"]'
+    _startdate_field = '//input[@name="start_date"]'
+    _enddate_field = '//input[@name="end_date"]'
+    _summary_text = '//textarea[@id="summary"]'
+    _save_btn = '//button[@type="submit"]'
+
+    _search_field = '//input[@type="search"]'
+    _first_cell = '//table[@id="xin_table"]/tbody/tr[1]/td[1]'
+
+    # Calendar locators
+    _calendar_root = '(//div[contains(@class,"dtp")])[last()]'
+    _calendar_view = _calendar_root + '//div[contains(@class,"dtp-date-view")]'
+    _calendar_ok_button = _calendar_root + '//button[contains(@class,"dtp-btn-ok")]'
+    _calendar_table = _calendar_root + '//table[contains(@class,"dtp-picker-days")]'
+
     def __init__(self, page: Page):
         self.page: Page = page
-
-        # Locators
-        self._menu_projects = '//a[contains(@href,"projects-list")]'
-        self._add_new_btn = '//a[@href="#add_form" and contains(normalize-space(.),"Add New")]'
-
-        self._title_field = '//input[@name="title" and @type="text"]'
-        self._client_select = '//select[@id="client_id"]'
-        self._startdate_field = '//input[@name="start_date"]'
-        self._enddate_field = '//input[@name="end_date"]'
-        self._summary_text = '//textarea[@id="summary"]'
-        self._save_btn = '//button[@type="submit"]'
-
-        self._search_field = '//input[@type="search"]'
-        self._first_cell = '//table[@id="xin_table"]/tbody/tr[1]/td[1]'
-
-        # Calendar locators
-        self._calendar_root = '(//div[contains(@class,"dtp")])[last()]'
-        self._calendar_view = self._calendar_root + '//div[contains(@class,"dtp-date-view")]'
-        self._calendar_ok_button = self._calendar_root + '//button[contains(@class,"dtp-btn-ok")]'
-        self._calendar_table = self._calendar_root + '//table[contains(@class,"dtp-picker-days")]'
 
     # Open Projects menu
     def click_menu(self):

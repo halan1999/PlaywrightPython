@@ -2,20 +2,19 @@ from playwright.sync_api import Page, expect
 from pages.base_page import BasePage
 
 class HomePage(BasePage):
+    MENUS = {
+        "Home": "Home",
+        "Projects": "Projects",
+        "Tasks": "Tasks",
+    }
+
+    _welcome_text = '//h6[text()="Welcome admin_example hello"]'
+    _profile_link = '//a[contains(@href,"my-profile")]//p'
+    _left_menu = '//span[normalize-space()="%s"]'
+    _log_out_button = '//div[@class="page-header"]//a[normalize-space()="Logout"]'
+
     def __init__(self, page: Page):
         super().__init__(page)
-
-        self.MENUS = {
-            "Home": "Home",
-            "Projects": "Projects",
-            "Tasks": "Tasks"
-        }
-
-        self._welcome_text = f'//h6[text()="Welcome admin_example hello"]'
-
-        self._profile_link = '//a[contains(@href,"my-profile")]//p'
-        self._left_menu = '//span[normalize-space()="%s"]'
-        self._log_out_button = '//div[@class="page-header"]//a[normalize-space()="Logout"]'
 
     def is_homepage_loaded(self):
         # expect(self.page.locator(self._profile_link)).to_be_visible(timeout=5000)
@@ -36,7 +35,12 @@ class HomePage(BasePage):
     def click_menu_item(self, menu_name: str):
         menu_locator = self._left_menu % menu_name
         expect(self.page.locator(menu_locator)).to_be_visible(timeout=5000)
-        self.page.locator(menu_locator).click()
+        self.click(menu_locator)
+        return self
+
+    def click_profile_link(self):
+        expect(self.page.locator(self._profile_link)).to_be_visible(timeout=5000)
+        self.click(self._profile_link)
         return self
                         
 

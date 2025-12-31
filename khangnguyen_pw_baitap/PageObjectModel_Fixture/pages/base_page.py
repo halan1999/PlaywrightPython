@@ -1,8 +1,8 @@
 from playwright.sync_api import Page
-import os
+
 
 class BasePage:
-    def __init__(self, page):
+    def __init__(self, page: Page):
         self.page = page
 
     def click(self, locator):
@@ -22,3 +22,6 @@ class BasePage:
 
     def hover(self, locator):
         self.page.locator(locator).hover()
+
+    def reload_page(self):
+        self.page.reload(wait_until="domcontentloaded")
