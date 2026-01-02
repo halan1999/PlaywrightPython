@@ -60,6 +60,14 @@ class BasePage:
     def _back_to_main_page(self):
         self.page.bring_to_front()
         self.page.wait_for_load_state() 
+
+    def _upload_file(self, locator: str, file_path: str):
+        self.page.set_input_files(locator, file_path)
+        print(f"Upload file successfully")
+        self._take_screenshot("after_upload_file.png")
+
+    def _get_input_value(self, locator: str) -> str:
+        return self.page.locator(locator).input_value()
     
     
 

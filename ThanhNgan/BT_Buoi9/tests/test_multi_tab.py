@@ -1,12 +1,14 @@
 from playwright.sync_api import Page, expect
-from pages.orange_hrm_page import OrangeHrmPage 
+from pages.OrangeHRM.orange_hrm_page import OrangeHrmPage 
 from core.base_page import BasePage 
-from pages.hrm_dashboard_page import HRM_DashboardPage
+from pages.OrangeHRM.hrm_dashboard_page import HRM_DashboardPage
 import time
 
 def test_open_twitter_tab_successfully_then_login(orangePage):
+    print("Goto twitter page")
     # Click icon Twitter to open new tab
     twitter_page = orangePage.open_twitter_tab()
+    
     
     # Verify title & icon
     assert twitter_page._get_url() == twitter_page.URL
