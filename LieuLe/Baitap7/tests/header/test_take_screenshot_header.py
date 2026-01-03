@@ -1,5 +1,2 @@
-def test_capture_all(dashboard):
-    dashboard.page.wait_for_url("**/erp/desk")
-    dashboard.header.capture_all()
-    
-
+def test_capture_all_menus(dashboard):
+    dashboard.header_menu.capture_all()

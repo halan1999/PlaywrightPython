@@ -8,7 +8,7 @@ def test_header_click_screenshot():
         page = browser.new_page()
         login_page = LoginPage(page, "LieuLe/Baitap6/data/credentials.json")
         username, password = login_page.load_credentials("valid")
-        login_page.loginwith()
+        login_page.login()
         header = HeaderComponent(page)
         
         page.goto("https://hrm.anhtester.com/erp/desk")

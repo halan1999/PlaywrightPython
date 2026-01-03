@@ -9,8 +9,8 @@ def test_login_successfully():
         browser = p.chromium.launch(headless=False)  # <--- chỉ cần đổi đây
         page = browser.new_page()
         login_page = LoginPage(page)
-        login_page.goto()
-        login_page.loginwith("standard_user", "secret_sauce")
+        login_page.open_login_page()
+        login_page.login("standard_user", "secret_sauce")
         expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
         print("Login successfully!")
         inventory = InventoryPage(page)
@@ -21,13 +21,13 @@ def test_login_successfully():
         time.sleep(5)
         browser.close()
 
-def test_login_unsuccessfully():
+def test_login_with_invalid_credentials_should_fail():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)  
         page = browser.new_page()
         login_page = LoginPage(page)
-        login_page.goto()
-        login_page.loginwith("standard_user", "123456")
+        login_page.open_login_page()
+        login_page.login("standard_user", "123456")
         expect(login_page.get_error_message()).to_have_text("Epic sadface: Username and password do not match any user in this service")
         print(f"Login unsuccessfully")
         time.sleep(5)

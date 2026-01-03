@@ -1,10 +1,14 @@
-import json
 from core.base_page import BasePage
-from playwright.sync_api import expect
 
 class LogoutComponent(BasePage):
-    logout_btn = "//a[contains(text(), 'Logout')]"
-    imag_avatar = "//img[@class = 'user-avtar']"
-    logout_in_list = "//span[normalize-space() = 'Logout']"
-    def __init__(self, page):
-        super().__init__(page)
+
+    AVATAR = "//img[contains(@class,'user-avtar')]"
+    LOGOUT_IN_LIST = "//span[normalize-space()='Logout']"
+    LOGOUT_BODY = "//a[contains(text(),'Logout')]"
+
+    def logout_from_header(self):
+        self.page.locator(self.AVATAR).click()
+        self.page.locator(self.LOGOUT_IN_LIST).click()
+
+    def logout_from_body(self):
+        self.page.locator(self.LOGOUT_BODY).click()

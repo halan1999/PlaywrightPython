@@ -12,10 +12,10 @@ class LoginPage(BasePage):
         super().__init__(page)  
         self.page = page
         
-    def goto(self):
+    def open_login_page(self):
         self._visit(self.URL)
 
-    def loginwith(self, username, password):
+    def login(self, username, password):
         self.goto()
         self._fill(self.Username, username)
         self._fill(self.Password, password)

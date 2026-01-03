@@ -23,4 +23,5 @@ class BasePage:
 
         self.page.screenshot(path=file_path, full_page=True)
         print("Saved:", os.path.abspath(file_path))
-        
+    
+    

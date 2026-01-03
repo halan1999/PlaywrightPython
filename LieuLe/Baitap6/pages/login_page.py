@@ -21,10 +21,10 @@ class LoginPage(BasePage):
         creds = data.get(account_type)
         return creds["username"], creds["password"]
         
-    def goto(self):
+    def open_login_page(self):
         self._visit(self.URL)
 
-    def loginwith(self, account_type = "valid"):
+    def login(self, account_type = "valid"):
         username, password = self.load_credentials(account_type)
         self.goto()
         #self._take_screenshot("before_login.jpeg")

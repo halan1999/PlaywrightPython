@@ -1,7 +1,5 @@
-from playwright.sync_api import Playwright
-from pages.dashboard_page import DashboardPage
-from pages.login_page import LoginPage
+def test_logout_from_header(dashboard):
+    dashboard.do_logout(via="header")
 
-def test_logout(logged_in_page, dashboard_page):
-    dashboard_page.page = logged_in_page
-    dashboard_page.logout()
+def test_logout_from_body(dashboard):
+    dashboard.do_logout(via="body")

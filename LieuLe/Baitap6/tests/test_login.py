@@ -14,16 +14,16 @@ def test_login_successfully():
         login_page._take_screenshot("before_login.jpeg")
         username, password = login_page.load_credentials("valid")
         login_page._take_screenshot("after_login.jpeg")
-        login_page.loginwith()
+        login_page.login()
         login_page.verify_login_success()
 
         browser.close() 
-def test_login_unsuccessfully():
+def test_login_with_invalid_credentials_should_fail():
      with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
         page = browser.new_page()
         login_page = LoginPage(page, "LieuLe/Baitap6/data/credentials.json")
-        login_page.loginwith("invalid")
+        login_page.login("invalid")
 
         error_text = login_page.get_error_message()
         print("Toast mesage:", error_text)

@@ -8,7 +8,7 @@ def test_scroll_left_menu ():
         page = browser.new_page()
         login_page = LoginPage(page, "LieuLe/Baitap6/data/credentials.json")
         username, password = login_page.load_credentials("valid")
-        login_page.loginwith()
+        login_page.login()
         left_menu = LeftComponent(page)
         page.goto("https://hrm.anhtester.com/erp/desk")
         login_page.take_before_scroll_screenshot(left_menu.left_menu1,"before_scroll_left_menu.png")

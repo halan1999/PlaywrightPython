@@ -25,21 +25,21 @@ class LoginPage(BasePage):
     def login_valid_user(self, account_type = "valid"):
         username, password = self.load_credentials(account_type)
         self.open()
-        self._fill(self.component.username, username)
-        self._fill(self.component.password, password) 
-        self._click(self.component.login_btn)
+        self._fill(self.component.USERNAME, username)
+        self._fill(self.component.PASSWORD, password) 
+        self._click(self.component.LOGIN_BTN)
         
     def login_invalid_user(self, account_type = "invalid"):
         username, password = self.load_credentials(account_type)
         self.open()
-        self._fill(self.component.username, username)
-        self._fill(self.component.password, password)
-        self._click(self.component.login_btn)
+        self._fill(self.component.USERNAME, username)
+        self._fill(self.component.PASSWORD, password)
+        self._click(self.component.LOGIN_BTN)
         
     def verify_login_success(self):
         expect(self.page).to_have_url(self.DASHBOARD_URL)
 
     def get_error_message(self):
-        locator = self.page.locator(self.component.error_message)
+        locator = self.page.locator(self.component.ERROR_MESSAGE)
         locator.first.wait_for(state="visible", timeout=3000)
         return locator.first.inner_text()
