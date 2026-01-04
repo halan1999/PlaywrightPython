@@ -3,7 +3,7 @@ from utils.data_generator import DataGenerator
 class RegisterAPI:
     def __init__(self, request_context):
         self.request_context = request_context
-        self.endpoint = "/api/register​"
+        self.endpoint = "/api/register"
 
     def __setup_payload(self):
         self.name = "Hải Chuột"
