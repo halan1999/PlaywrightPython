@@ -16,7 +16,7 @@ class LoginPage(BasePage):
     def login(self,username,password):
         self.goto(self.URL)
         time.sleep(3)
-        self.take_screenshot("access_url_successfully.png")
+        self.take_screenshot("access_url_successfully.png", "access_url_successfully")
         self.send_text(self.USERNAME,username)
         self.send_text(self.PASSWORD,password)
         self.click_element(self.LOGIN_BTN)
