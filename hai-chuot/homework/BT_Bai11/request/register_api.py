@@ -1,13 +1,19 @@
 from utils.data_generator import DataGenerator
+from core.base_request import BaseRequest
+from core.base_request import APIMethod
 
-class RegisterAPI:
+class RegisterAPI(BaseRequest):
     def __init__(self, request_context):
-        self.request_context = request_context
+        super().__init__(request_context)
         self.endpoint = "/api/register"
+        self.name = None
+        self.email = None
+        self.password = None
+        self.payload = None
 
     def __setup_payload(self):
-        self.name = "Hải Chuột"
-        self.email = DataGenerator.random_email("playwright")
+        self.name = DataGenerator.generate_name()
+        self.email = DataGenerator.generate_email()
         self.password = "12345678"
         self.payload = {
             "name": f"{self.name}",
@@ -20,12 +26,30 @@ class RegisterAPI:
 
     def send_request(self):
         self.__setup_payload()
-        self.response = self.request_context.post(
+        response = self._send_request(
+            APIMethod.POST,
             self.endpoint,
             data = self.payload
         )
+
+        self.response_code = response.status
+        self.response_json = self._get_response_body(response)
+
+    def validate_response(self):
+        self._verify_status_code(self.response_code, 201)
+        expected_schema = {
+            "type": "object",
+            "properties": {
+                "msg": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "msg"
+            ]
+        }
+
+        self._validate_json_schema(self.response_json, expected_schema)
     
     def verify_user_created(self):
-        response_json = self.response.json()
-        assert self.response.status == 201 
-        assert response_json["msg"] == "Register successfully."
+        assert self.response_json["msg"] == "Register successfully."
