@@ -5,7 +5,7 @@ class DataGenerator:
     @staticmethod
     def generate_email():
         now = datetime.now()
-        time_string = now.strftime("%d%m%Y%H%M")
+        time_string = now.strftime("%d%m%Y%H%M%S")
         return f"tony.rat{time_string}@chuotbeo.tester.vn"
 
     @staticmethod
