@@ -1,0 +1,13 @@
+
+
+
+
+Dependencies
+pip install python-dotenv
+
+pytest tests/api_tests/test_register_api.py --alluredir=allure-results
+allure serve allure-results
+
+pytest -s -q --alluredir=allure-results
+allure generate allure-results -o allure-report --clean
+allure open allure-report
