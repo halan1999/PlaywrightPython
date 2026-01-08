@@ -2,7 +2,6 @@ from utils.randoms import *
 
 class RegisterPayload:
     def __init__(self, name="kimqa", password="Test@123456"):
-        # Payload gửi đi
         self.name = random_name()
         self.email = random_email()
         self.password = password

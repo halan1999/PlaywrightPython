@@ -26,7 +26,6 @@ class MeResponse:
         Loại bỏ ID vì ID thường do Server sinh ra, không có trong payload gửi đi.
         """
         for key, expected_value in payload.items():
-            # Đồng bộ key của payload với thuộc tính của class
             attr_name = "avatarurl" if key == "avatarUrl" else key
             
             actual_value = getattr(self, attr_name, None)

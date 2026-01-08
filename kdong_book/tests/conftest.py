@@ -11,7 +11,7 @@ def random_email():
     return f"kimqa_{suffix}@mailinator.com"
 
 def random_password():
-    return "Test@123456"  # demo; có thể đổi theo rule của hệ thống
+    return "Test@123456" 
 
 @pytest.fixture
 def new_user_data():
@@ -74,7 +74,6 @@ def auth_api_client(api_context, auth_token):
         "Authorization": f"Bearer {auth_token}",
         "Content-Type": "application/json"
     }
-    # Khởi tạo context mới với headers cố định
     context = playwright.request.new_context(
         base_url=EnvConfig.API_BASE_URL,
         extra_http_headers=headers
