@@ -25,7 +25,7 @@ jobs:
           playwright install --with-deps
 
       - name: Run tests
-        run: pytest -s tests\ui\Book_API\test_login.py -q --html=report.html --self-contained-html
+        run: pytest -s hoaint_1998\tests\ui\Book_API\test_login.py -q --html=report.html --self-contained-html
 
       - name: Upload report
         if: always()
