@@ -15,5 +15,6 @@ faker
 #playwright install
 #câu lệnh kích hoạt venv: venv\Scripts\activate
 #câu lệnh run test: pytest -s tests\Multi_Tabs\test_orange_hrm.py
+# pytest -s tests\ui\Book_API\test_login.py
 #debug: set PWDEBUG=1 & pytest -s tests\test_class_buoi4.py
 #huy debug: set PWDEBUG=0
