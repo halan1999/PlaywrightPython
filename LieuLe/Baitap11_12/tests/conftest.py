@@ -1,50 +1,31 @@
+# tests/conftest.py
 import pytest
 from playwright.sync_api import sync_playwright
+from config.env import BASE_URL
+from fixtures.auth_fixtures import *
 
 @pytest.fixture(scope="session")
-def api_context ():
+def playwright():
     with sync_playwright() as p:
-        request_context = p.request.new_context(
-            base_url="https://jsonplaceholder.typicode.com",
-            extra_http_headers={
-                "Accept" : "application/json"
-            }
-        )
-        yield request_context
-        request_context.dispose()
-    
+        yield p
 
+@pytest.fixture(scope="function")
+def browser(playwright):
+    browser = playwright.chromium.launch(headless=False)
+    yield browser
+    browser.close()
 
-# def register_user(api_context, payload: dict):
+@pytest.fixture(scope="function")
+def page(browser):
+    context = browser.new_context()
+    page = context.new_page()
+    yield page
+    context.close()
 
-#     res = api_context.post("/api/register", data=payload)
-
-#     # print(res.headers)
-
-#     if res.ok:
-
-#         return res.json()
-
- 
-
-#     res2 = api_context.post("/api/register", data={"fields": payload})
-
-#     # print(res.extra_http_headers)
-
-#     if res2.ok:
-
-#         print(res.json())
-
-#         return res2.json()
-
- 
-
-#     raise AssertionError(
-
-#         f"Register failed.\n"
-
-#         f"Try1: {res.status} - {res.text()}\n"
-
-#         f"Try2: {res2.status} - {res2.text()}"
-
-#     )
+@pytest.fixture(scope="session")
+def api_request(playwright):
+    request = playwright.request.new_context(
+        base_url=BASE_URL
+    )
+    yield request
+    request.dispose()
