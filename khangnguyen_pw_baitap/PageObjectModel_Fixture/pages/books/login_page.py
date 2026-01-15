@@ -11,6 +11,7 @@ class LoginPage(BasePage):
     _email_field = '//input[@name="email"]'
     _password_field = '//input[@name="password"]'
     _login_button = '//button[normalize-space()="Login account"]'
+    _login_success_message = '//p[text()="Login successfully."]'
 
     _cred_path = (
         Path(__file__).resolve().parents[2]
@@ -45,3 +46,10 @@ class LoginPage(BasePage):
         self._username.fill(username or self.username_valid)
         self._password.fill(password or self.password_valid)
         self._login_btn.click()
+    
+    def is_logged_in(self, timeout: int = 8000) -> bool:
+        try:
+            expect(self._login_success_message).to_be_visible(timeout=timeout)
+            return True
+        except AssertionError:
+            return False

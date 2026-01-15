@@ -15,4 +15,6 @@ def test_login_with_account_registered_via_api(page, api_context):
         login_page = LoginPage(page)
         login_page.open()
         login_page.login_valid()
+        
+        assert login_page.is_logged_in()
         assert LeftMenu(page).is_left_menu_visible()
