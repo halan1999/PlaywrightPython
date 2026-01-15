@@ -2,9 +2,9 @@ name: Hoai
 
 on:
   push:
-    branches: [ "hoait" ]
+    branches: [ "hoaint" ]
   pull_request:
-    branches: [ "hoait" ]
+    branches: [ "hoaint" ]
 
 
 jobs:
