@@ -1,0 +1,8 @@
+{
+    "python-envs.defaultEnvManager": "ms-python.python:system",
+    "python-envs.pythonProjects": [],
+    "editor.fontFamily": "'Hack', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontLigatures": false,
+    "editor.fontSize": 11,
+    "editor.lineHeight": 14
+}

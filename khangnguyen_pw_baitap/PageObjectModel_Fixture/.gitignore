@@ -1,0 +1,126 @@
+# ===================================================================
+# PYTHON
+# ===================================================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyd
+*.pdb
+*.pdb
+*.py.class
+
+# Distribution / Packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+.python-version
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# MyPy / Static analysis
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+# Byte-compiled / optimized / DLL files
+*.so
+
+# ===================================================================
+# PYTEST
+# ===================================================================
+.pytest_cache/
+.cache/
+
+# Coverage
+.coverage
+coverage.xml
+htmlcov/
+coverage/
+
+# ===================================================================
+# PLAYWRIGHT / TEST OUTPUT
+# ===================================================================
+playwright-report/
+blob-report/
+test-results/
+playwright/.cache/
+
+# ===================================================================
+# ENVIRONMENT VARIABLES
+# ===================================================================
+.env
+*.env
+.env.*
+*.secret
+*.credentials
+
+# ===================================================================
+# OS SYSTEM FILES
+# ===================================================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ===================================================================
+# VS CODE
+# ===================================================================
+.vscode/
+.history/
+*.code-workspace
+
+# ===================================================================
+# LOGS
+# ===================================================================
+*.log
+logs/
+log/
+
+# ===================================================================
+# PROJECT-SPECIFIC (OPTIONAL)
+# ===================================================================
+# If tests generate screenshots or videos:
+screenshots/
+videos/
+
+# If using pytest-playwright attachments:
+test-results/
+
+# Ignore JSON test data if needed:
+*.json
+data/
+
+# Allure
+allure-results/
+allure-report/
+test-results/
+playwright-report/
+*.zip
