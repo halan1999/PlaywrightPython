@@ -4,7 +4,7 @@ import allure
 from pages.hrm_anhtester.login_page import LoginPage
 from pages.hrm_anhtester.home_page import HomePage
 from pages.hrm_anhtester.account_settings_page import AccountSettingsPage
-from components.header_component import HeaderComponent
+from components.hrm_anhtester.header_component import HeaderComponent
 
 @allure.title("Upload profile picture with valid file")
 @allure.description(
