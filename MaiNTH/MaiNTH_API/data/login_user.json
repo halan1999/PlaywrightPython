@@ -1,0 +1,23 @@
+{
+    "valid_login_user": {
+        "email": "mainth1368@gmail.com",
+        "password": "password123"
+    },
+    "invalid_login_user_wrong_password": {
+        "email": "mainth1368@gmail.com",
+        "password": "wrongpassword"
+    },
+    "invalid_login_user_nonexistent_email": {
+        "email": "nonexistent@gmail.com",
+        "password": "password123"
+    },
+    "invalid_login_user_blank_email": {
+        "email": "",
+        "password": "password123"
+    },
+    "invalid_login_user_blank_password": {
+        "email": "mainth1368@gmail.com",
+        "password": ""
+    }
+}
+    
