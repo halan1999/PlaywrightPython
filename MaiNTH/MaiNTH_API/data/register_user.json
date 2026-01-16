@@ -1,0 +1,67 @@
+{
+    "valid_user_1": {
+        "name": "Test User",
+        "email": "{{random_email}}",
+        "password": "password123",
+        "avatarURL": "https://example.com/avatar.jpg",
+        "phone": "1234567890",
+        "address": "123 Test St, Test City"
+    },
+    "valid_user_2": {
+        "name": "Test User",
+        "email": "{{random_email}}",
+        "password": "password123",
+        "avatarURL": "https://example.com/avatar.jpg",
+        "phone": "1234567890",
+        "address": ""
+    },
+    "valid_user_3": {
+        "name": "Test User",
+        "email": "{{random_email}}",
+        "password": "password123",
+        "avatarURL": "https://example.com/avatar.jpg",
+        "phone": "",
+        "address": ""
+    },
+    "valid_user_4": {
+        "name": "Test User",
+        "email": "{{random_email}}",
+        "password": "password123",
+        "avatarURL": "",
+        "phone": "",
+        "address": ""
+    },
+    "invalid_user_blank": {
+        "name": "",
+        "email": "mainth1368+500@gmail.com",
+        "password": "password123",
+        "avatarURL": "",
+        "phone": "",
+        "address": ""
+    },
+    "invalid_email_blank": {
+        "name": "Test User",
+        "email": "",
+        "password": "password123",
+        "avatarURL": "",
+        "phone": "",
+        "address": ""
+    },
+    "invalid_pw_blank": {
+        "name": "Test User",
+        "email": "mainth1368+600@gmail.com",
+        "password": "",
+        "avatarURL": "",
+        "phone": "",
+        "address": ""
+    },
+    "invalid_email_format": {
+        "name": "Test User",
+        "email": "testexamplecom",
+        "password": "password123",
+        "avatarURL": "",
+        "phone": "",
+        "address": ""
+    }
+}
+    
