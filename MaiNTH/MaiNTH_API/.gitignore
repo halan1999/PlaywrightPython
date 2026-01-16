@@ -62,3 +62,8 @@ Thumbs.db
 ../MaiNTH_HRM/
 ../ORANGE_HRM/
 ../PlaywrightPython/
+__pycache__/
+.venv/
+*.rar
+reports/
+screenshots/
