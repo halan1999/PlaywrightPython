@@ -8,6 +8,7 @@ def load_json_file(file_path: str):
         return data
     except FileNotFoundError:
         print(f"[FILE] not found {file_path}")
+        return None
     except json.JSONDecodeError as e:
         print(f"[JSON] json format error: {e}")
         return None

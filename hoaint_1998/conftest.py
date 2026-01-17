@@ -48,18 +48,15 @@ def credentials():
 
 @pytest.fixture(scope="session")
 def profiles(credentials):
-    return list(credentials.key())
+    return list(credentials.keys())
 
 def pytest_generate_tests(metafunc):
     if "profile" in metafunc.fixturenames:
-        creds =  metafunc.config._credentials_cache = (
-            metafunc.config._credentials_cache
-            if hasattr(metafunc.config, "_credentials_cache")
-            else None
-        )
-        # load data only once
-        if creds is None:
+        # load data only once using cache
+        if not hasattr(metafunc.config, "_credentials_cache"):
             creds = json.loads(DATA_FILE.read_text(encoding="utf-8"))
             metafunc.config._credentials_cache = creds
+        else:
+            creds = metafunc.config._credentials_cache
         profiles = list(creds.keys())[:3]
         metafunc.parametrize("profile", profiles, ids=profiles)

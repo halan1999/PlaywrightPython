@@ -13,5 +13,6 @@ def register(api_context_antester, new_user_data):
 def test_case_1(page, api_context_antester, new_user_data):
     register(api_context_antester, new_user_data)
     login = Login(page)
+    login.open_login_page()
     login.login(new_user_data["email"], new_user_data["password"])
     

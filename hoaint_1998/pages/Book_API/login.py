@@ -4,6 +4,9 @@ class Login(BasePage):
     def __init__(self, page):
         super().__init__(page)
 
+    def open_login_page(self):
+        self._goto("https://book.anhtester.com/sign-in")
+
     def login(self, email: str, password: str):
         EMAIL = self.page.get_by_role("textbox", name="Email address")
         PASSWORD = self.page.get_by_role("textbox", name="Password")
