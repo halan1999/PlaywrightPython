@@ -8,7 +8,7 @@ import string
 from faker import Faker
 
 
-file_path_json_login_data = os.path.join(os.getcwd(), "data", "login_data", "credentials.json")
+file_path_json_login_data = os.path.join(os.getcwd(), "hoaint_1998", "data", "login_data", "credentials.json")
 
 cred = load_json_file(file_path_json_login_data)
 valid_user = cred["valid_user"]
