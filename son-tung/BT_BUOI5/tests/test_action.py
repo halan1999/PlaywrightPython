@@ -30,7 +30,17 @@ def test_erp_locator(page : Page):
     # Input name
     page.locator("//input[@type='search']").fill(name)
 
-    # Assertion
+    # Assertion add successfully
     expect(page.locator("//tbody//tr[1]//td[@class='sorting_1']")).to_contain_text(name)
 
+    # Wait for popup add successfully disappear
+    page.wait_for_timeout(5000)
+
+    # Click button Delete
+    page.locator("//table//span[@data-original-title='Delete']").click()
+    # Click button Submit
+    page.locator("//div[@class='modal-content']//button[@type='submit']").click()
+
+    # Assertion delete successfully
+    expect(page.locator("//div[@class='toast-message']")).to_contain_text('Department deleted.')
 
