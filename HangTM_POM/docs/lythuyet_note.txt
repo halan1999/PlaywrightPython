@@ -1,0 +1,47 @@
+B1:
+POM : mỗi màn hình web => Cần 1 class python (Page)
+BasePage: Class cha, giữ page của Playwwright và các hàm dùng chung: goto, click, fill, should_visible, screenshot
+LoginPage: 
+ . Biết url Login
+ . Biết locator của user name/password/Button Login
+ . Có 3 method: Open(), login(), assert_login_success()
+Test chỉ gọi method của page, không đụng locator
+Flow đúng:
+Test_login-> LoginPage -> BasePage
+B2:
+. LoginPage là class đại diện cho trang Login
+. Nó phải biết:
+   . url của login là gì
+   . Các locator của ô username/pw, Button logon
+   . Cách kiểm tra login thành công
+. Login phải có 3 method chính:
+   . Open() -> Mở url login (dùng BasePage.goto)
+   . login(username,password) -> điền username và pw, click Button login
+   . assert_login_success() -> kiểm tra đã login thành công (dùng should_visible với 1 element chỉ có sau khi login)
+=> Flow mong muốn:
+test_login_success
+ -> LoginPage.Open()
+ -> LoginPage.login()
+ -> LoginPage.assert_login_success()
+ -> LoginPage (bên trong) dùng BasePage.goto/should_visible/...
+ Bắt xpath: CoreHR
+ - //a: tất cả các link
+ - normalize-space(.) : Text trong node, bỏ khoảng trắng thừa
+ - Contains(....,'Core HR')= Chỉ cần chứa text Core HR
+
+ 
+Bắt xpath cho table:
+- Tìm root - table -> tìm id hoặc class
+- Viết css hoặc xpath cho nó:
+css: 
+. table#<id> tbody tr
+. table.<class> tbody tr
+xpath: 
+. //table[@id=' ... ']//tbody//tr
+.//table[contains(@class,'<class>')]//tbody//tr
+Dùng trong POM:
+self.Table_rows= "table#xin_table tbody tr"
+# hoặc
+self.table_rows = "//table[@id='xin_table']//tbody//tr"
+
+

@@ -1,0 +1,195 @@
+MULTI-TAB CHEAT SHEET – PLAYWRIGHT PYTHON
+
+(Dùng để dạy + làm việc thật, không phải ghi chú chơi)
+
+1. Tư duy gốc
+
+browser → chứa nhiều BrowserContext
+
+BrowserContext → chứa nhiều Page
+
+Mỗi tab/window của browser = 1 Page trong 1 BrowserContext
+
+Multi-tab = làm việc với nhiều Page trong cùng context.
+
+context = browser.new_context()
+page = context.new_page()      # tab 1
+page2 = context.new_page()     # tab 2
+pages = context.pages          # list tất cả tab trong context
+
+2. API QUAN TRỌNG (NHỚ THUỘC)
+API	Ý nghĩa / Khi dùng
+context.pages	Danh sách tất cả tab (Page) hiện tại
+context.new_page()	Tự tạo thêm tab mới
+page.expect_popup()	Chờ tab mới mở ra TỪ page hiện tại (click → mở tab)
+context.expect_page()	Chờ bất kỳ tab mới trong context (ít phụ thuộc page cụ thể)
+page.bring_to_front()	Đưa tab đó lên foreground (switch tab)
+page.close()	Đóng tab hiện tại
+page.url / page.title()	Kiểm tra tab đang ở đâu / tiêu đề gì
+page.wait_for_load_state()	Đợi tab load xong trước khi assert / thao tác
+3. PATTERN 1 – CLICK LINK target="_blank" MỞ TAB MỚI
+3.1. Dùng page.expect_popup() (chuẩn nhất)
+
+Dùng khi chính page này click và mở thêm 1 tab mới.
+
+from playwright.sync_api import expect
+
+with page.expect_popup() as popup_info:
+    page.locator("text=Click Here").click()     # link có target="_blank"
+
+new_page = popup_info.value
+new_page.wait_for_load_state()
+
+assert "/windows/new" in new_page.url
+expect(new_page.locator("h3")).to_have_text("New Window")
+
+
+QUY TẮC:
+
+Khối with page.expect_popup() phải bọc đúng hành động gây mở tab.
+
+Nếu click sai element (không mở tab mới) → Timeout “waiting for event popup”.
+
+3.2. Khi nghi ngờ (hoặc event không bắn) → dùng context.expect_page()
+
+An toàn hơn nếu tab mới không rõ từ page nào, hoặc framework JS chơi trò lạ.
+
+with page.context.expect_page() as page_info:
+    page.locator("text=Click Here").click()
+
+new_page = page_info.value
+new_page.wait_for_load_state()
+
+4. PATTERN 2 – QUẢN LÝ NHIỀU TAB ĐÃ MỞ
+4.1. Lấy toàn bộ tab
+pages = context.pages
+for p in pages:
+    print(p.url)
+
+4.2. Switch tab
+dashboard_page = context.pages[0]
+settings_page  = context.pages[1]
+
+settings_page.bring_to_front()
+# ... assert gì đó ...
+
+dashboard_page.bring_to_front()
+# ... tiếp tục thao tác trên Dashboard ...
+
+4.3. Đóng các tab thừa, giữ 1 tab
+for p in context.pages[1:]:  # giữ tab đầu
+    p.close()
+
+5. PATTERN 3 – TỰ TẠO TAB MỚI BẰNG CODE
+
+Không có click, em tự mở tab:
+
+new_page = context.new_page()
+new_page.goto("https://google.com")
+new_page.bring_to_front()
+
+
+KHÔNG dùng expect_popup trong trường hợp này.
+
+6. PATTERN 4 – CÁCH “THỦ CÔNG” ĐẾM TAB TRƯỚC / SAU CLICK
+
+Dùng khi không muốn/không thể dùng expect_* nhưng vẫn cần đảm bảo có tab mới.
+
+old_count = len(context.pages)
+
+page.locator("text=Click Here").click()
+
+for _ in range(10):  # tối đa 5s
+    if len(context.pages) > old_count:
+        break
+    page.wait_for_timeout(500)
+
+assert len(context.pages) == old_count + 1
+new_page = context.pages[-1]
+new_page.wait_for_load_state()
+
+7. CÁC LỖI KINH ĐIỂN CẦN TRÁNH
+
+Timeout “waiting for event popup”
+
+Lý do:
+
+Click nhầm element không mở tab mới.
+
+Link không có target="_blank" / không gọi window.open.
+
+Fix:
+
+Inspect HTML: xem đúng link có target="_blank" không.
+
+Dùng text=... hoặc a[href='/path'] đúng cho link đó.
+
+Nhầm “tab UI” với “browser tab”
+
+Tab UI (Overview / Details trong cùng trang) không phải multi-tab browser → không dùng expect_popup.
+
+Chỉ là click bình thường và assert nội dung.
+
+Mất reference tab gốc
+
+Không lưu login_page = page.
+
+Sau khi mở nhiều tab, không biết tab nào là login, tab nào là settings.
+
+Fix: luôn đặt tên rõ:
+
+login_page = page
+settings_page = new_page
+
+
+Không wait_for_load_state() trên tab mới
+
+Vội assert khi trang chưa load xong → fail ngẫu nhiên.
+
+Luôn gọi:
+
+new_page.wait_for_load_state()
+
+
+Dùng nhầm API
+
+Case mở tab mới → dùng expect_popup / context.expect_page.
+
+Case chỉ chuyển page trong cùng tab → không được dùng expect_popup.
+
+8. MINI CHECKLIST KHI GẶP MULTI-TAB
+
+Link này có thực sự mở tab mới không?
+
+Có target="_blank" hoặc JS window.open → YES → dùng expect_popup / context.expect_page.
+
+Không → chỉ chuyển trang trong tab hiện tại → CLICK BÌNH THƯỜNG.
+
+Đã lưu Page gốc chưa?
+
+main_page = page
+
+
+Click mở tab mới có bọc trong expect_ chưa?*
+
+with page.expect_popup() as p_info:
+    main_page.locator("...").click()
+new_page = p_info.value
+
+
+Sau khi mở:
+
+new_page.wait_for_load_state()
+
+Assert new_page.url / heading.
+
+Switch tab:
+
+new_page.bring_to_front()
+main_page.bring_to_front()
+
+
+Dọn dẹp (nếu cần):
+
+for p in context.pages[1:]:
+    p.close()

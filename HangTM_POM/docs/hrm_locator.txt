@@ -1,0 +1,28 @@
+1/ Login
+username: 
+- form#erp-form input#iusername
+- input[name='iusername']
+password:
+-  input[name='password']
+- form#erp-form input#ipassword (lấy theo id)
+- form#erp-form input[name='password']
+Button Login: 
+- form#erp-form button[type='submit']
+- button[type='submit']
+after-login element;
+- //h6[normalize-space()='Welcome admin_example hello']
+- a[href$='/erp/my-profile'] h6
+2/ Department:
+CoreHR menu: //a[contains(normalize-space(.), 'Core HR')]
+Department_menu: //a[contains(@href, '/erp/departments-list')]
+
+Add_button:
+name_input: input[name='department_name']
+Save_button://span[contains(normalize-space(.), 'Save')]/parent::button
+Search_input:input[type='search']
+Table_rows:
+table#xin_table tbody tr          # CSS
+//table[@id='xin_table']//tbody//tr   # XPath
+3/ Logout:
+- Header://a[@data-toggle='dropdown' and contains(@class, 'pc-head-link')]
+- Logout: //a[contains(@href, '/erp/logout')]

@@ -1,0 +1,6 @@
+icon Facebook: div.orangehrm-login-footer-sm a[href*='facebook']
+icon linkedin: div.orangehrm-login-footer-sm a[href*='linkedin']
+icon twitter : div.orangehrm-login-footer-sm a[href*='twitter']
+a[href*='twitter']
+icon youtube: div.orangehrm-login-footer-sm a[href*='youtube']
+a[href*='youtube']
